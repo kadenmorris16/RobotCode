@@ -1,5 +1,5 @@
 from tkinter import Tk, Label
-#from maestro import Controller
+from maestro import Controller
 
 # Port Declarations
 FORWARD_REVERSE = 0
@@ -22,7 +22,8 @@ L_GRIPPER = 16
 
 # Movement variables
 ROTATION = 200
-DIRECTION = 1
+global direction
+direction = 1
 SPEED = 1
 
 root=Tk()
@@ -57,58 +58,58 @@ def key_pressed(event):
         t.moveServo(1, ROTATION)
     elif(pressed == '-'):
         w=Label(root,text="Changing direction")
-        DIRECTION = DIRECTION * -1
+        direction *= -1
 
     # HEAD & WAIST
     elif(pressed == 'z'):
         w=Label(root,text="Moving waist")
-        t.moveServo(2, ROTATION * DIRECTION)
+        t.moveServo(2, ROTATION * direction)
     elif(pressed == ','):
-        w=Label(root,text="Tilting head")
-        t.moveServo(3, ROTATION * DIRECTION)
-    elif(pressed == '.'):
         w=Label(root,text="Turning head")
-        t.moveServo(4, ROTATION * DIRECTION)
+        t.moveServo(3, ROTATION * direction)
+    elif(pressed == '.'):
+        w=Label(root,text="Tilting head")
+        t.moveServo(4, ROTATION * direction)
 
     # RIGHT ARM
     elif(pressed == 't'):
         w=Label(root,text="Moving right shoulder")
-        t.moveServo(5, ROTATION * DIRECTION)
+        t.moveServo(5, ROTATION * direction)
     elif(pressed == 'y'):
         w=Label(root,text="Moving right bicep")
-        t.moveServo(6, ROTATION * DIRECTION)
+        t.moveServo(6, ROTATION * direction)
     elif(pressed == 'u'):
         w=Label(root,text="Moving right elbow")
-        t.moveServo(7, ROTATION * DIRECTION)
+        t.moveServo(7, ROTATION * direction)
     elif(pressed == 'i'):
         w=Label(root,text="Moving right forearm")
-        t.moveServo(8, ROTATION * DIRECTION)
+        t.moveServo(8, ROTATION * direction)
     elif(pressed == 'o'):
         w=Label(root,text="Moving right wrist")
-        t.moveServo(9, ROTATION * DIRECTION)
+        t.moveServo(9, ROTATION * direction)
     elif(pressed == 'p'):
         w=Label(root,text="Moving right gripper")
-        t.moveServo(10, ROTATION * DIRECTION)
+        t.moveServo(10, ROTATION * direction)
 
     # LEFT ARM
     elif(pressed == 'f'):
         w=Label(root,text="Moving left shoulder")
-        t.moveServo(11, ROTATION * DIRECTION)
+        t.moveServo(11, ROTATION * direction)
     elif(pressed == 'g'):
         w=Label(root,text="Moving left bicep")
-        t.moveServo(12, ROTATION * DIRECTION)
+        t.moveServo(12, ROTATION * direction)
     elif(pressed == 'h'):
         w=Label(root,text="Moving left elbow")
-        t.moveServo(13, ROTATION * DIRECTION)
+        t.moveServo(13, ROTATION * direction)
     elif(pressed == 'j'):
         w=Label(root,text="Moving left forearm")
-        t.moveServo(14, ROTATION * DIRECTION)
+        t.moveServo(14, ROTATION * direction)
     elif(pressed == 'k'):
         w=Label(root,text="Moving left wrist")
-        t.moveServo(15, ROTATION * DIRECTION)
+        t.moveServo(15, ROTATION * direction)
     elif(pressed == 'l'):
         w=Label(root,text="Moving left gripper")
-        t.moveServo(16, ROTATION * DIRECTION)
+        t.moveServo(16, ROTATION * direction)
     else:
         w=Label(root,text="Key Pressed: "+ pressed)
 
