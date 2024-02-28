@@ -22,7 +22,6 @@ L_GRIPPER = 16
 
 # Movement variables
 ROTATION = 200
-global direction
 direction = 1
 SPEED = 1
 
@@ -42,7 +41,7 @@ t = Tango()
 
 def key_pressed(event):
     pressed = event.char
-
+    global direction
     # WHEELS
     if(pressed == 'w'):
         w=Label(root,text="Moving forward")
