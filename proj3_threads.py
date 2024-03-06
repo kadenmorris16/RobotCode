@@ -9,6 +9,8 @@ class Screen:
         self.canvas = tk.Canvas(self.root, bg="#dcdcdc")
         self.canvas.pack(fill=tk.BOTH, expand=True)
         self.movePupilsId = None
+        self.moveFigureId = None
+        self.spiralId = None
 
         self.drawEyes(0)
         self.root.after(100, lambda: self.runMainloop())
@@ -62,6 +64,9 @@ class Screen:
 
     def move(self):
         self.canvas.delete("all")
+        if self.moveFigureId is not None:
+            self.canvas.after_cancel(self.moveFigureId)
+            self.moveFigureId = None
         x = self.canvas.winfo_screenwidth() / 2
         y = self.canvas.winfo_screenheight() / 2
         size = self.canvas.winfo_screenwidth() / 200
@@ -81,10 +86,13 @@ class Screen:
         x1, _ , x2, _ = self.canvas.bbox("figure")
         if x2 > self.canvas.winfo_screenwidth() or x1 < 0:
             velo *= -1
-        self.canvas.after(10, lambda: self.moveFigure(velo))
+        self.moveFigureId = self.canvas.after(10, lambda: self.moveFigure(velo))
 
     def printWordSpiral(self, word, fontSize):
         self.canvas.delete("all")
+        if self.spiralId is not None:
+            self.canvas.after_cancel(self.spiralId)
+            self.spiralId = None
         self.canvas.create_text(self.canvas.winfo_screenwidth() // 2, self.canvas.winfo_screenheight() // 2, text=word, font=("Helvetica", fontSize, "bold"), fill="black", tags="word")
 
         self.spiral(0, fontSize, fontSize)
@@ -94,7 +102,7 @@ class Screen:
         if currentSize <= 5:
             currentSize = initialSize + 5
             angle = -30
-        self.canvas.after(100, lambda: self.spiral(angle + 30, initialSize, currentSize - 5))
+        self.spiralId = self.canvas.after(100, lambda: self.spiral(angle + 30, initialSize, currentSize - 5))
 
     def printText(self, textContent, fontSize):
         self.canvas.delete("all")
