@@ -1,8 +1,8 @@
 import tkinter as tk
+import pyttsx3
 import threading
 
 class Screen:
-
     def __init__(self):
         self.root = tk.Tk()
         self.root.attributes('-fullscreen', True)
@@ -14,9 +14,6 @@ class Screen:
 
         self.drawEyes(0)
         self.root.after(100, lambda: self.runMainloop())
-
-    def runMainloop(self):
-        self.root.mainloop()
     
     def drawEyes(self, look): #look---> 0: move around, 1: up, 2: right, 3: down, 4: left, anything else: straight
         self.canvas.delete("all")
@@ -51,7 +48,7 @@ class Screen:
             self.canvas.move("leftPupil", (-2/3)*eyeRadius, 0)
             self.canvas.move("rightPupil", (-2/3)*eyeRadius, 0)
     
-    def movePupils(self, xVelo, yVelo):
+    def movePupils(self, xVelo, yVelo): #Helper
         self.canvas.move("leftPupil", xVelo, yVelo)
         self.canvas.move("rightPupil", xVelo, yVelo)
         ex1, ey1, ex2, ey2 = self.canvas.bbox("leftEye")
@@ -81,7 +78,7 @@ class Screen:
 
         self.moveFigure(5)
 
-    def moveFigure(self, velo):
+    def moveFigure(self, velo): #Helper
         self.canvas.move("figure", velo, 0)
         x1, _ , x2, _ = self.canvas.bbox("figure")
         if x2 > self.canvas.winfo_screenwidth() or x1 < 0:
@@ -97,7 +94,7 @@ class Screen:
 
         self.spiral(0, fontSize, fontSize)
 
-    def spiral(self, angle, initialSize, currentSize):
+    def spiral(self, angle, initialSize, currentSize): #Helper
         self.canvas.itemconfig("word", angle=angle, font=("Helvetica", currentSize, "bold"))
         if currentSize <= 5:
             currentSize = initialSize + 5
@@ -108,18 +105,47 @@ class Screen:
         self.canvas.delete("all")
         self.canvas.create_text(self.canvas.winfo_screenwidth()//2, self.canvas.winfo_screenheight()//2, text=textContent, font=("Helvetica", fontSize), fill="black")
 
+class TTS:
+    def __init__(self):
+        self.engine = pyttsx3.init()
+
+    def speak(self, text):
+        self.speechThread = threading.Thread(target=self.speakThread, args=(text,), daemon=True)
+        self.speechThread.start()
+
+    def speakThread(self, text):
+        self.engine.say(text)
+        self.engine.runAndWait()
+
 def example():
     display = Screen()
+    speech = TTS()
+    text = "Hey there. My name is Robot. This is a test."
+    word = "Word"
 
-    display.root.bind('<KeyPress-1>', lambda event: display.move())
-    display.root.bind('<KeyPress-2>', lambda event: display.printText("Hey there. My name is Robot. This is a test.", 20))
-    display.root.bind('<KeyPress-3>', lambda event: display.printWordSpiral("Word", 200))
-    display.root.bind('<KeyPress-4>', lambda event: display.drawEyes(0))
-    display.root.bind('<KeyPress-5>', lambda event: display.drawEyes(1))
-    display.root.bind('<KeyPress-6>', lambda event: display.drawEyes(2))
-    display.root.bind('<KeyPress-7>', lambda event: display.drawEyes(3))
-    display.root.bind('<KeyPress-8>', lambda event: display.drawEyes(4))
-    display.root.bind('<KeyPress-9>', lambda event: display.drawEyes(5))
+    def on_key_press(event):
+        if event.char == '1':
+            display.move()
+        elif event.char == '2':
+            speech.speak(text)
+            display.printText(text, 20)
+        elif event.char == '3':
+            speech.speak(word)
+            display.printWordSpiral(word, 200)
+        elif event.char == '4':
+            display.drawEyes(0)
+        elif event.char == '5':
+            display.drawEyes(1)
+        elif event.char == '6':
+            display.drawEyes(2)
+        elif event.char == '7':
+            display.drawEyes(3)
+        elif event.char == '8':
+            display.drawEyes(4)
+        elif event.char == '9':
+            display.drawEyes(5)
+
+    display.root.bind('<KeyPress>', on_key_press)
 
     display.root.mainloop()
 
