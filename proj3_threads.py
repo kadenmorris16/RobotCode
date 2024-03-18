@@ -13,13 +13,21 @@ class Screen:
         self.spiralId = None
 
         self.drawEyes(0)
-        self.root.after(100, lambda: self.runMainloop())
     
-    def drawEyes(self, look): #look---> 0: move around, 1: up, 2: right, 3: down, 4: left, anything else: straight
-        self.canvas.delete("all")
+    def clear(self):
         if self.movePupilsId is not None:
             self.canvas.after_cancel(self.movePupilsId)
             self.movePupilsId = None
+        if self.moveFigureId is not None:
+            self.canvas.after_cancel(self.moveFigureId)
+            self.moveFigureId = None
+        if self.spiralId is not None:
+            self.canvas.after_cancel(self.spiralId)
+            self.spiralId = None
+        self.canvas.delete("all")
+    
+    def drawEyes(self, look):
+        self.clear()
         screenHeight = self.canvas.winfo_screenheight()
         screenWidth = self.canvas.winfo_screenwidth()
         margin = 15
@@ -48,7 +56,7 @@ class Screen:
             self.canvas.move("leftPupil", (-2/3)*eyeRadius, 0)
             self.canvas.move("rightPupil", (-2/3)*eyeRadius, 0)
     
-    def movePupils(self, xVelo, yVelo): #Helper
+    def movePupils(self, xVelo, yVelo):
         self.canvas.move("leftPupil", xVelo, yVelo)
         self.canvas.move("rightPupil", xVelo, yVelo)
         ex1, ey1, ex2, ey2 = self.canvas.bbox("leftEye")
@@ -60,10 +68,7 @@ class Screen:
         self.movePupilsId = self.canvas.after(10, lambda: self.movePupils(xVelo, yVelo))
 
     def move(self):
-        self.canvas.delete("all")
-        if self.moveFigureId is not None:
-            self.canvas.after_cancel(self.moveFigureId)
-            self.moveFigureId = None
+        self.clear()
         x = self.canvas.winfo_screenwidth() / 2
         y = self.canvas.winfo_screenheight() / 2
         size = self.canvas.winfo_screenwidth() / 200
@@ -78,7 +83,7 @@ class Screen:
 
         self.moveFigure(5)
 
-    def moveFigure(self, velo): #Helper
+    def moveFigure(self, velo):
         self.canvas.move("figure", velo, 0)
         x1, _ , x2, _ = self.canvas.bbox("figure")
         if x2 > self.canvas.winfo_screenwidth() or x1 < 0:
@@ -86,15 +91,12 @@ class Screen:
         self.moveFigureId = self.canvas.after(10, lambda: self.moveFigure(velo))
 
     def printWordSpiral(self, word, fontSize):
-        self.canvas.delete("all")
-        if self.spiralId is not None:
-            self.canvas.after_cancel(self.spiralId)
-            self.spiralId = None
+        self.clear()
         self.canvas.create_text(self.canvas.winfo_screenwidth() // 2, self.canvas.winfo_screenheight() // 2, text=word, font=("Helvetica", fontSize, "bold"), fill="black", tags="word")
 
         self.spiral(0, fontSize, fontSize)
 
-    def spiral(self, angle, initialSize, currentSize): #Helper
+    def spiral(self, angle, initialSize, currentSize):
         self.canvas.itemconfig("word", angle=angle, font=("Helvetica", currentSize, "bold"))
         if currentSize <= 5:
             currentSize = initialSize + 5
@@ -102,7 +104,7 @@ class Screen:
         self.spiralId = self.canvas.after(100, lambda: self.spiral(angle + 30, initialSize, currentSize - 5))
 
     def printText(self, textContent, fontSize):
-        self.canvas.delete("all")
+        self.clear()
         self.canvas.create_text(self.canvas.winfo_screenwidth()//2, self.canvas.winfo_screenheight()//2, text=textContent, font=("Helvetica", fontSize), fill="black")
 
 class TTS:
@@ -110,28 +112,29 @@ class TTS:
         self.engine = pyttsx3.init()
 
     def speak(self, text):
-        self.speechThread = threading.Thread(target=self.speakThread, args=(text,), daemon=True)
-        self.speechThread.start()
+        try:
+            self.engine.say(text)
+            self.engine.runAndWait()
+        except Exception as e:
+            print("An exception occurred during speech synthesis:", e)
 
-    def speakThread(self, text):
-        self.engine.say(text)
-        self.engine.runAndWait()
-
-def example():
+def main():
     display = Screen()
     speech = TTS()
-    text = "Hey there. My name is Robot. This is a test."
-    word = "Word"
+    text = "Hey there. My name is Bobby the Bobcat. This is a test."
+    word = "Go Bobcats!"
 
     def on_key_press(event):
         if event.char == '1':
             display.move()
         elif event.char == '2':
             speech.speak(text)
+            #threading.Thread(target=speech.speak, args=(text,)).start()
             display.printText(text, 20)
         elif event.char == '3':
             speech.speak(word)
-            display.printWordSpiral(word, 200)
+            #threading.Thread(target=speech.speak, args=(word,)).start()
+            display.printWordSpiral(word, 150)
         elif event.char == '4':
             display.drawEyes(0)
         elif event.char == '5':
@@ -149,4 +152,4 @@ def example():
 
     display.root.mainloop()
 
-example()
+main()
