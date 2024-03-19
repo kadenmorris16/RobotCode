@@ -1,5 +1,6 @@
 from tkinter import Tk, Label
 from maestro import Controller
+import time
 
 # Port Declarations
 FORWARD_REVERSE = 0
@@ -32,9 +33,20 @@ class Tango:
         self.tango = Controller()
         self.turn = 4500
         self.tango.setTarget(HEADTURN, self.turn)
+        self.tango.setTarget(FORWARD_REVERSE, 6000)
+        self.tango.setTarget(LEFT_RIGHT, 6000)
     
     def moveServo(self, port, val):
         self.tango.setTarget(port, self.tango.getPosition(port) + val)
+        return
+    
+    def setServo(self, port, val):
+        self.tango.setTarget(port, val)
+        return
+    
+    def reset(self, port):
+        self.tango.setTarget(port, 6000)
+        return
 
 
 t = Tango()
@@ -45,10 +57,16 @@ def key_pressed(event):
     # WHEELS
     if(pressed == 'w'):
         w=Label(root,text="Moving forward")
-        t.moveServo(0, ROTATION * SPEED)
+        t.setServo(0, 6000 - (SPEED * ROTATION))
+        time.sleep(1)
+        t.reset(0)
+
     elif(pressed == 's'):
         w=Label(root,text="Moving backwards")
-        t.moveServo(0, -1 * ROTATION * SPEED)
+        t.setServo(0, 6000 - (SPEED * ROTATION))
+        time.sleep(1)
+        t.reset(0)
+        
     elif(pressed == 'a'):
         w=Label(root,text="Turning left")
         t.moveServo(1, -1 * ROTATION)
