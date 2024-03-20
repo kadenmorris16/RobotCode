@@ -1,6 +1,6 @@
 import tkinter as tk
-import pyttsx3
 from threading import Thread
+from speech import TTS
 
 class Screen:
     def __init__(self):
@@ -113,17 +113,6 @@ class Screen:
         
         if speak:
             Thread(target=self.speech.speak, args=(textContent,)).start()
-
-class TTS:
-    def __init__(self):
-        self.engine = pyttsx3.init()
-
-    def speak(self, text):
-        try:
-            self.engine.say(text)
-            self.engine.runAndWait()
-        except Exception as e:
-            print("An exception occurred during speech:", e)
 
 if __name__ == "__main__":
     display = Screen()
