@@ -1,6 +1,7 @@
 import tkinter as tk
 import pyttsx3
-import threading
+from threading import Thread
+from multiprocessing import Process
 
 class Screen:
     def __init__(self):
@@ -116,25 +117,31 @@ class TTS:
             self.engine.say(text)
             self.engine.runAndWait()
         except Exception as e:
-            print("An exception occurred during speech synthesis:", e)
+            print("An exception occurred during speech:", e)
 
-def main():
+if __name__ == "__main__":
     display = Screen()
     speech = TTS()
-    text = "Hey there. My name is Bobby the Bobcat. This is a test."
+    text = "Hey there. My name is Bobby. This is a test."
     word = "Go Bobcats!"
+
+    def speakThread(text):
+        try:
+            t = Thread(target=speech.speak, args=(text,))
+            t.start()
+            t.join()
+        except Exception as e:
+            print("An error occurred during text-to-speech:", e)
 
     def on_key_press(event):
         if event.char == '1':
             display.move()
         elif event.char == '2':
-            speech.speak(text)
-            #threading.Thread(target=speech.speak, args=(text,)).start()
             display.printText(text, 20)
+            speakThread(text)
         elif event.char == '3':
-            speech.speak(word)
-            #threading.Thread(target=speech.speak, args=(word,)).start()
             display.printWordSpiral(word, 150)
+            speakThread(word)
         elif event.char == '4':
             display.drawEyes(0)
         elif event.char == '5':
@@ -151,5 +158,3 @@ def main():
     display.root.bind('<KeyPress>', on_key_press)
 
     display.root.mainloop()
-
-main()
