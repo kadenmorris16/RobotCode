@@ -15,9 +15,6 @@ class Screen:
 
         self.drawEyes(0)
     
-    def runThread(self, callback, arguments):
-        threading.Thread(target=callback, args=arguments).start()
-    
     def clear(self):
         if self.movePupilsId is not None:
             self.canvas.after_cancel(self.movePupilsId)
