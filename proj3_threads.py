@@ -12,6 +12,7 @@ class Screen:
         self.movePupilsId = None
         self.moveFigureId = None
         self.spiralId = None
+        self.speech = TTS()
 
         self.drawEyes(0)
     
@@ -91,11 +92,14 @@ class Screen:
             velo *= -1
         self.moveFigureId = self.canvas.after(10, lambda: self.moveFigure(velo))
 
-    def printWordSpiral(self, word, fontSize):
+    def printWordSpiral(self, word, fontSize, speak):
         self.clear()
         self.canvas.create_text(self.canvas.winfo_screenwidth() // 2, self.canvas.winfo_screenheight() // 2, text=word, font=("Helvetica", fontSize, "bold"), fill="black", tags="word")
 
         self.spiral(0, fontSize, fontSize)
+
+        if speak:
+            Thread(target=self.speech.speak, args=(word,)).start()
 
     def spiral(self, angle, initialSize, currentSize):
         self.canvas.itemconfig("word", angle=angle, font=("Helvetica", currentSize, "bold"))
@@ -104,9 +108,12 @@ class Screen:
             angle = -30
         self.spiralId = self.canvas.after(100, lambda: self.spiral(angle + 30, initialSize, currentSize - 5))
 
-    def printText(self, textContent, fontSize):
+    def printText(self, textContent, fontSize, speak):
         self.clear()
         self.canvas.create_text(self.canvas.winfo_screenwidth()//2, self.canvas.winfo_screenheight()//2, text=textContent, font=("Helvetica", fontSize), fill="black")
+        
+        if speak:
+            Thread(target=self.speech.speak, args=(textContent,)).start()
 
 class TTS:
     def __init__(self):
@@ -121,27 +128,16 @@ class TTS:
 
 if __name__ == "__main__":
     display = Screen()
-    speech = TTS()
     text = "Hey there. My name is Bobby. This is a test."
     word = "Go Bobcats!"
-
-    def speakThread(text):
-        try:
-            t = Thread(target=speech.speak, args=(text,))
-            t.start()
-            t.join()
-        except Exception as e:
-            print("An error occurred during text-to-speech:", e)
 
     def on_key_press(event):
         if event.char == '1':
             display.move()
         elif event.char == '2':
-            display.printText(text, 20)
-            speakThread(text)
+            display.printText(text, 20, True)
         elif event.char == '3':
-            display.printWordSpiral(word, 150)
-            speakThread(word)
+            display.printWordSpiral(word, 150, True)
         elif event.char == '4':
             display.drawEyes(0)
         elif event.char == '5':
