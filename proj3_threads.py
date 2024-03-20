@@ -1,7 +1,6 @@
 import tkinter as tk
 import pyttsx3
 from threading import Thread
-from multiprocessing import Process
 
 class Screen:
     def __init__(self):
