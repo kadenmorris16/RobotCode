@@ -63,16 +63,25 @@ def key_pressed(event):
 
     elif(pressed == 's'):
         w=Label(root,text="Moving backwards")
-        t.setServo(0, 6000 - (SPEED * ROTATION))
+        t.setServo(0, 6000 + (SPEED * ROTATION))
         time.sleep(1)
         t.reset(0)
+    elif(pressed == '='):
+        w=Label(root,text="Incrementing speed")
+        SPEED = SPEED + 1
+        if(SPEED == 4):
+            SPEED = 1
         
     elif(pressed == 'a'):
         w=Label(root,text="Turning left")
-        t.moveServo(1, -1 * ROTATION)
+        t.setServo(1, 6000 + (SPEED * ROTATION))
+        time.sleep(1)
+        t.reset(1)
     elif(pressed == 'd'):
         w=Label(root,text="Turning right")
-        t.moveServo(1, ROTATION)
+        t.setServo(1, 6000 - (SPEED * ROTATION))
+        time.sleep(1)
+        t.reset(1)
     elif(pressed == '-'):
         w=Label(root,text="Changing direction")
         direction *= -1
