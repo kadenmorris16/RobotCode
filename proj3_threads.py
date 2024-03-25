@@ -78,7 +78,7 @@ class Screen:
 
     def nextBlink(self):
         t = random.randint(1000, 4000)
-        self.nextBlinkId = self.canvas.after(t, lambda: self.blink(15))
+        self.nextBlinkId = self.canvas.after(t, lambda: self.blink(10))
 
     def blink(self, velo):
         self.canvas.move("topLid", 0, velo)
