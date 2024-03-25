@@ -92,7 +92,7 @@ class Screen:
             self.nextBlink()
             return
 
-        self.blinkId = self.canvas.after(8, lambda: self.blink(velo))
+        self.blinkId = self.canvas.after(10, lambda: self.blink(velo))
 
     def movePupils(self, xVelo, yVelo):
         self.canvas.move("leftPupil", xVelo, yVelo)
@@ -119,7 +119,7 @@ class Screen:
         leftFoot = self.canvas.create_line(x - size*12, y + size*32, x - size*12, y + size*36, fill = "black", tags = "figure")
         rightFoot = self.canvas.create_line(x + size*12, y + size*32, x + size*12, y + size*36, fill = "black", tags = "figure")
 
-        self.moveFigure(5)
+        self.moveFigure(3)
 
     def moveFigure(self, velo):
         self.canvas.move("figure", velo, 0)
