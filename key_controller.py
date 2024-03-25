@@ -116,9 +116,12 @@ def key_pressed(event):
         #w=Label(root,text="Key Pressed: "+ pressed)
 
     #w.place(x=70,y=90)
-
-if __name__ == "__main__":
+        
+def run():
     root=Tk()
     t = Tango()
     root.bind("<Key>",key_pressed)
     root.mainloop()
+
+if __name__ == "__main__":
+    run()

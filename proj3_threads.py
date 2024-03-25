@@ -78,7 +78,7 @@ class Screen:
 
     def nextBlink(self):
         t = random.randint(1000, 4000)
-        self.nextBlinkId = self.canvas.after(t, lambda: self.blink(30))
+        self.nextBlinkId = self.canvas.after(t, lambda: self.blink(20))
 
     def blink(self, velo):
         self.canvas.move("topLid", 0, velo)
@@ -92,7 +92,7 @@ class Screen:
             self.nextBlink()
             return
 
-        self.blinkId = self.canvas.after(10, lambda: self.blink(velo))
+        self.blinkId = self.canvas.after(8, lambda: self.blink(velo))
 
     def movePupils(self, xVelo, yVelo):
         self.canvas.move("leftPupil", xVelo, yVelo)
