@@ -118,6 +118,7 @@ def key_pressed(event, t, display):
         
 def run():
     root=Tk()
+    root.withdraw()
     tango = Tango()
     display = Screen()
     root.bind("<Key>", lambda event: key_pressed(event, tango, display))
