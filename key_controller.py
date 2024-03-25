@@ -3,9 +3,8 @@ from tango import Tango
 from proj3_threads import Screen
 import time
 
-def key_pressed(event):
+def key_pressed(event, t, display):
     pressed = event.char
-    display = Screen()
 
     # Movement variables
     ROTATION = 200
@@ -119,8 +118,9 @@ def key_pressed(event):
         
 def run():
     root=Tk()
-    t = Tango()
-    root.bind("<Key>",key_pressed)
+    tango = Tango()
+    display = Screen()
+    root.bind("<Key>", lambda event: key_pressed(event, tango, display))
     root.mainloop()
 
 if __name__ == "__main__":
