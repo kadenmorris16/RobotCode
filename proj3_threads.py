@@ -59,7 +59,7 @@ class Screen:
 
         self.canvas.tag_raise("face")
 
-        self.nextBlink()
+        threading.Thread(target=self.nextBlink).start()
 
         if(look == 0): # move
             self.movePupils(0.5, 0.5)
