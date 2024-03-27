@@ -1,25 +1,29 @@
 # Client Program
 
 import socket
-import sys
-import random
 import pickle
-import time
 import pyttsx3
-
+import platform
+import subprocess
 
 engine = pyttsx3.init()
 
-
 def main():
-    server_ip = "192.168.1.64"
+    server_ip = "192.168.43.178" #MANUAL INPUT
     token = "your turn"
-    port = 6005
-    host = '192.168.1.64'
+    port = 9000
+    # if(platform.system() == 'Linux'):
+    #     host = subprocess.check_output(['hostname', '-I']).decode().strip() # Linux
+    # else:
+    #     host = str(socket.gethostbyname(socket.gethostname())) # Windows
 
-    server = (server_ip, 6000)
-    clientSocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    clientSocket.bind( (host,port) )
+    host = "192.168.43.81"
+
+    print("Client starting on " + host)
+
+    #server = (server_ip, port)
+    clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    clientSocket.connect((server_ip, port))
 
     lines = ["Hi, you look familiar.", "I am from Montana, where are you from?", 
              "Me too, I am from the room we are in currently in Bozeman, Montana.", "Tango.", 
@@ -28,7 +32,7 @@ def main():
     count = 0
     
     while True:
-        (msg, addr) = clientSocket.recvfrom(1024)
+        (msg, addr) = clientSocket.recv(1024)
         msg = pickle.loads(msg)
 
         if (msg == token):
@@ -38,17 +42,13 @@ def main():
             
             if(count == len(lines) - 1):
                 data = pickle.dumps("EOF")
-                clientSocket.sendto(data, server)
+                clientSocket.sendall(data)
                 break
             else:
                 count+=1
                 data = pickle.dumps(token)
-                clientSocket.sendto(data, server)
+                clientSocket.sendall(data)
 
-    print("Client done")
-
-
-        
+    print("Client done")      
 
 main()
-
