@@ -9,21 +9,23 @@ import subprocess
 engine = pyttsx3.init()
 
 def main():
-    server_ip = "192.168.43.178" #MANUAL INPUT
+    
     token = "your turn"
     port = 9000
-    # if(platform.system() == 'Linux'):
-    #     host = subprocess.check_output(['hostname', '-I']).decode().strip() # Linux
-    # else:
-    #     host = str(socket.gethostbyname(socket.gethostname())) # Windows
+    if(platform.system() == 'Linux'):
+        host = subprocess.check_output(['hostname', '-I']).decode().strip() # Linux
+    else:
+        host = str(socket.gethostbyname(socket.gethostname())) # Windows
 
-    host = "192.168.43.81"
+    #host = "192.168.43.81"
+    server_ip = "192.168.1.236" #MANUAL INPUT
 
     print("Client starting on " + host)
 
     #server = (server_ip, port)
     clientSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     clientSocket.connect((server_ip, port))
+    print("Connected to server.")
 
     lines = ["Hi, you look familiar.", "I am from Montana, where are you from?", 
              "Me too, I am from the room we are in currently in Bozeman, Montana.", "Tango.", 
@@ -32,7 +34,7 @@ def main():
     count = 0
     
     while True:
-        (msg, addr) = clientSocket.recv(1024)
+        msg = clientSocket.recv(1024)
         msg = pickle.loads(msg)
 
         if (msg == token):
