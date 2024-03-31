@@ -29,7 +29,7 @@ class ChatGPT:
         try:
             response = self.client.completions.create(
                 model="gpt-3.5-turbo-instruct",
-                prompt="Answer with funny short phrase: " + string,
+                prompt="Answer (in under 15 words) with a joke that will make me laugh uncontrollably: " + string,
                 max_tokens=25
             )
             return response.choices[0].text.strip()
@@ -40,7 +40,7 @@ class ChatGPT:
         try:
             response = self.client.completions.create(
                 model="gpt-3.5-turbo-instruct",
-                prompt="Answer with a short phrase in an angry tone: " + string,
+                prompt="Respond (in under 15 words) with a cutting remark that would leave someone speechless: " + string,
                 max_tokens=25
             )
             return response.choices[0].text.strip()
@@ -51,7 +51,7 @@ class ChatGPT:
         try:
             response = self.client.completions.create(
                 model="gpt-3.5-turbo-instruct",
-                prompt="Answer with a short phrase and pretend you're smarter than Einstein: " + string,
+                prompt="Answer (in under 15 words) by pretending you're smarter than Einstein: " + string,
                 max_tokens=25
             )
             return response.choices[0].text.strip()
@@ -62,7 +62,7 @@ class ChatGPT:
         try:
             response = self.client.completions.create(
                 model="gpt-3.5-turbo-instruct",
-                prompt="Respond with a short phrase and improper grammar: " + string,
+                prompt="Give an answer (in under 15 words) that's so simple, even a child could understand it: " + string,
                 max_tokens=25
             )
             return response.choices[0].text.strip()
@@ -73,7 +73,7 @@ class ChatGPT:
         try:
             response = self.client.completions.create(
                 model="gpt-3.5-turbo-instruct",
-                prompt="Respond with a short phrase like the happiest person in the world: " + string,
+                prompt="Reply (in under 15 words) with boundless enthusiasm, as if you've just won the lottery: " + string,
                 max_tokens=25
             )
             return response.choices[0].text.strip()
@@ -82,7 +82,7 @@ class ChatGPT:
 
 if __name__ == "__main__":
     ai = ChatGPT()
-    q = "what is your best joke?"
+    q = "Where is the engineering building?"
     response= ai.question_random(q)
     print("Response:", response)
     ai.engine.speak(response)
