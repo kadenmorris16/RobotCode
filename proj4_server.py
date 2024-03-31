@@ -42,7 +42,7 @@ def main():
             connection.sendall(data)
             continue
 
-        (msg, addr) = connection.recvfrom(1024)
+        msg = connection.recv(1024)
         msg = pickle.loads(msg)
         
         if (msg == token):
