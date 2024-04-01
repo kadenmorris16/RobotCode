@@ -87,7 +87,7 @@ class Option:
 def parse(line, num):
     line = line.lower()
     start = line[0]
-    
+
 
     if(start == '#' or '#' in line):
         return

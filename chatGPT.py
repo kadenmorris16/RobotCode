@@ -1,10 +1,11 @@
 import speech
 import openai
 import random
+import speech_recognition as sr
 
 class ChatGPT:
     def __init__(self):
-        self.client = openai.OpenAI(api_key="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")
+        #self.client = openai.OpenAI(api_key="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")
         self.engine = speech.TTS()
 
     def question_random(self, string):
@@ -94,9 +95,26 @@ class ChatGPT:
         except Exception as e:
             return f"Error: {e}", None
 
-if __name__ == "__main__":
+def robot_listen():
     ai = ChatGPT()
-    q = "What do you think of Montana State?"
-    response= ai.question_random(q)
-    print("Response:", response)
-    ai.engine.speak(response)
+    r = sr.Recognizer()
+
+    while True:
+        with sr.Microphone() as source:
+            r.adjust_for_ambient_noise(source)
+            r.energy_threshold = 300
+
+            try:
+                print("\nAsk a question!")
+                audio = r.listen(source)
+                text = r.recognize_google(audio)
+                print("You said:", text)
+
+                response = ai.question_random(text)
+                print("Response:", response)
+                ai.engine.speak(response)
+            except sr.UnknownValueError:
+                print("I don't understand...")
+
+if __name__ == "__main__":
+    robot_listen()
