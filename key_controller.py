@@ -93,11 +93,10 @@ def key_pressed(event, t, root):
     else:
         w=Label(root,text="Key Pressed: "+ pressed)
 
-    w.place(x=70,y=90)
+    #w.place(x=70,y=90)
         
-def run():
-    root=Tk()
-    root.withdraw()
+def run(root):
+    #root.withdraw()
     tango = Tango()
     global DIRECTION
     DIRECTION = 1

@@ -4,8 +4,8 @@ import threading
 from speech import TTS
 
 class Screen:
-    def __init__(self):
-        self.root = tk.Tk()
+    def __init__(self, root):
+        self.root = root
         self.root.attributes('-fullscreen', True)
         self.canvas = tk.Canvas(self.root, bg="#dcdcdc")
         self.canvas.pack(fill=tk.BOTH, expand=True)
@@ -152,9 +152,9 @@ class Screen:
             threading.Thread(target=self.speech.speak, args=(textContent,)).start()
 
 
-def run():
+def run(root):
     global DIRECTION
-    display = Screen()
+    display = Screen(root)
     text = "Hey there! My name is Bobby."
     word = "Go Bobcats!"
     armMovement = {'t', 'y', 'u', 'i', 'o', 'p', 'f', 'g', 'h', 'j', 'k', 'l'}
