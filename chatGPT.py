@@ -5,7 +5,7 @@ import speech_recognition as sr
 
 class ChatGPT:
     def __init__(self):
-        #self.client = openai.OpenAI(api_key="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")
+        self.client = openai.OpenAI(api_key="")
         self.engine = speech.TTS()
 
     def question_random(self, string):
