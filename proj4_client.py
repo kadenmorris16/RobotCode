@@ -3,8 +3,6 @@
 import socket
 import pickle
 import pyttsx3
-import platform
-import subprocess
 
 engine = pyttsx3.init()
 
