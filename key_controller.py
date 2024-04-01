@@ -101,7 +101,7 @@ def run(root):
     global DIRECTION
     DIRECTION = 1
     root.bind("<Key>", lambda event: key_pressed(event, tango, root))
-    root.mainloop()
+    #root.mainloop()
 
 if __name__ == "__main__":
     run()

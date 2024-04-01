@@ -218,9 +218,9 @@ def run(root):
         elif event.char in armMovement:
             display.drawEyes(5)
 
-    display.root.bind('<KeyPress>', on_key_press)
+    root.bind('<KeyPress>', on_key_press)
 
-    display.root.mainloop()
+    #display.root.mainloop()
 
 if __name__ == "__main__":
     run()
