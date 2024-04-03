@@ -6,6 +6,6 @@ import tkinter as tk
 
 if __name__ == "__main__":  
     root=tk.Tk()
-    Thread(target=screen.run, args=(root,)).start() # start screen in seperate thread
-    target=key_controller.run(root) # start key controller
+    #screen.run(root) # start screen
+    key_controller.run(root) # start key controller
     root.mainloop()

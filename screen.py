@@ -152,16 +152,13 @@ class Screen:
             threading.Thread(target=self.speech.speak, args=(textContent,)).start()
 
 
-def run(root):
-    global DIRECTION
+def run():
+    root = tk.Tk()
     display = Screen(root)
     text = "Hey there! My name is Bobby."
     word = "Go Bobcats!"
-    armMovement = {'t', 'y', 'u', 'i', 'o', 'p', 'f', 'g', 'h', 'j', 'k', 'l'}
-    DIRECTION = 1
 
     def on_key_press(event):
-        global DIRECTION
 
         #TEST KEYS
         if event.char == '1':
@@ -183,44 +180,9 @@ def run(root):
         elif event.char == '9':
             display.drawEyes(5)
 
-        # WHEELS
-        elif event.char == 'w': # Moving forward
-            display.move()
-        elif event.char == 's': # Moving backward
-            display.move()
-        elif event.char == 'a': # Turning left
-            display.drawEyes(2)
-        elif event.char == 'd': # Turning right
-            display.drawEyes(4)
-        
-        elif event.char == '-': # Changing direction
-            DIRECTION *= -1
-            print("proj3_threads: direction =", DIRECTION)
-
-        # HEAD & WAIST
-        elif event.char == 'z': # Moving waist
-            if DIRECTION == 1:
-                display.drawEyes(2)
-            else:
-                display.drawEyes(4)
-        elif event.char == ',': # Turning head
-            if DIRECTION == 1:
-                display.drawEyes(2)
-            else:
-                display.drawEyes(4)
-        elif event.char == '.': # Tilting head
-            if DIRECTION == 1:
-                display.drawEyes(1)
-            else:
-                display.drawEyes(3)
-
-        # ARMS
-        elif event.char in armMovement:
-            display.drawEyes(5)
-
     root.bind('<KeyPress>', on_key_press)
 
-    #display.root.mainloop()
+    display.root.mainloop()
 
 if __name__ == "__main__":
     run()
