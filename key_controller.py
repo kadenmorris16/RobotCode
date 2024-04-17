@@ -107,6 +107,8 @@ def key_pressed(event, t, display):
         display.printText(text, 20, True)
     elif event.char == '2':
         display.printWordSpiral(word, 150, True)
+    elif event.char == '3':
+        display.drawEyes(5)
     
  
 def run(root):
