@@ -4,6 +4,10 @@ class Gesture:
     def __init__(self, tango):
         self.t = tango
 
+    def reset(self):
+        for i in range(14):
+            self.t.reset(i+2)
+
     def start(self):
         self.t.setServo(2, 1500) # waist (+ = left)
         self.t.setServo(3, 1500) # turn head (+ = left)
@@ -19,13 +23,13 @@ class Gesture:
         self.t.setServo(13, 1150) # l elbow (+ = up)
         self.t.setServo(14, 1750) # l forearm (+ = up)
         self.t.setServo(15, 1550) # l wrist (+ = rotate left)
-        self.t.setServo(15, 1500) # l gripper (+ = close)
+        self.t.setServo(16, 1500) # l gripper (+ = close)
 
 
 
 def run(tango):
     g = Gesture(tango)
-    g.start()
+    g.reset()
 
 
 if __name__ == "__main__":
