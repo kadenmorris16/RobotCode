@@ -32,12 +32,12 @@ def key_pressed(event, t, display):
     elif event.char == 'a': # Turning left
         display.drawEyes(2)
         t.setServo(1, 6000 + (SPEED * ROTATION * 6))
-        time.sleep(0.8)
+        time.sleep(0.6)
         t.reset(1)
     elif event.char == 'd': # Turning right
         display.drawEyes(4)
         t.setServo(1, 6000 - (SPEED * ROTATION * 6))
-        time.sleep(0.8)
+        time.sleep(0.6)
         t.reset(1)
     elif event.char == '-': # Changing direction
         DIRECTION *= -1
