@@ -1,9 +1,10 @@
 from tango import Tango
-from threading import Thread
+import tkinter as tk
 import time
 from screen import Screen
+from gestures import Gesture
 
-def key_pressed(event, t, display):
+def key_pressed(event, t, display, gesture):
 
     text = "Hey there! My name is Bobby."
     word = "Go Bobcats!"
@@ -17,12 +18,12 @@ def key_pressed(event, t, display):
     if event.char == 'w': # Moving forward
         display.move()
         t.setServo(0, 6000 - (SPEED * ROTATION * 4))
-        time.sleep(1)
+        time.sleep(0.8)
         t.reset(0)
     elif event.char == 's': # Moving backward
         display.move()
         t.setServo(0, 6000 + (SPEED * ROTATION * 4))
-        time.sleep(1)
+        time.sleep(0.8)
         t.reset(0)
     elif(event.char == '='): # incrememnt speed
         SPEED = SPEED + 1
@@ -30,13 +31,13 @@ def key_pressed(event, t, display):
             SPEED = 1
     elif event.char == 'a': # Turning left
         display.drawEyes(2)
-        t.setServo(1, 6000 + (SPEED * ROTATION * 4))
-        time.sleep(1)
+        t.setServo(1, 6000 + (SPEED * ROTATION * 6))
+        time.sleep(0.6)
         t.reset(1)
     elif event.char == 'd': # Turning right
         display.drawEyes(4)
-        t.setServo(1, 6000 - (SPEED * ROTATION * 4))
-        time.sleep(1)
+        t.setServo(1, 6000 - (SPEED * ROTATION * 6))
+        time.sleep(0.6)
         t.reset(1)
     elif event.char == '-': # Changing direction
         DIRECTION *= -1
@@ -47,7 +48,7 @@ def key_pressed(event, t, display):
             display.drawEyes(2)
         else:
             display.drawEyes(4)
-        t.moveServo(2, ROTATION * DIRECTION)
+        t.moveServo(2, ROTATION * DIRECTION * 2)
     elif event.char == ',': # Turning head
         if DIRECTION == 1:
             display.drawEyes(2)
@@ -106,6 +107,9 @@ def key_pressed(event, t, display):
         display.printText(text, 20, True)
     elif event.char == '2':
         display.printWordSpiral(word, 150, True)
+    elif event.char == '3':
+        gesture.start()
+        display.drawEyes(5)
     
  
 def run(root):
@@ -114,8 +118,12 @@ def run(root):
 
     tango = Tango()
     display = Screen(root)
+    gesture = Gesture(tango)
+    gesture.start()
 
-    root.bind("<Key>", lambda event: key_pressed(event, tango, display))
+    root.bind("<Key>", lambda event: key_pressed(event, tango, display, gesture))
 
 if __name__ == "__main__":
-    run()
+    root=tk.Tk()
+    run(root)
+    root.mainloop()
