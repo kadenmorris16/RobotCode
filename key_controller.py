@@ -1,5 +1,4 @@
 from tango import Tango
-from threading import Thread
 import tkinter as tk
 import time
 from screen import Screen
