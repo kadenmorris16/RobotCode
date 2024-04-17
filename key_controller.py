@@ -2,6 +2,7 @@ from tango import Tango
 import tkinter as tk
 import time
 from screen import Screen
+from gestures import Gesture
 
 def key_pressed(event, t, display):
 
@@ -116,6 +117,8 @@ def run(root):
 
     tango = Tango()
     display = Screen(root)
+    gesture = Gesture(tango)
+    gesture.start()
 
     root.bind("<Key>", lambda event: key_pressed(event, tango, display))
 
