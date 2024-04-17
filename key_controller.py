@@ -12,7 +12,7 @@ def key_pressed(event, t, display):
     # Movement variables
     global DIRECTION
     ROTATION = 200
-    SPEED = 1   
+    SPEED = 2   
 
     # WHEELS
     if event.char == 'w': # Moving forward
@@ -26,7 +26,7 @@ def key_pressed(event, t, display):
         time.sleep(1)
         t.reset(0)
     elif(event.char == '='): # incrememnt speed
-        SPEED = SPEED + 1
+        SPEED = SPEED * 2
         if(SPEED == 4):
             SPEED = 1
     elif event.char == 'a': # Turning left
@@ -51,9 +51,9 @@ def key_pressed(event, t, display):
         t.moveServo(2, ROTATION * DIRECTION)
     elif event.char == ',': # Turning head
         if DIRECTION == 1:
-            display.drawEyes(2)
-        else:
             display.drawEyes(4)
+        else:
+            display.drawEyes(2)
         t.moveServo(3, ROTATION * DIRECTION)
     elif event.char == '.': # Tilting head
         if DIRECTION == 1:
