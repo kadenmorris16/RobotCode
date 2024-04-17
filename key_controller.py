@@ -26,17 +26,17 @@ def key_pressed(event, t, display):
         time.sleep(1)
         t.reset(0)
     elif(event.char == '='): # incrememnt speed
-        SPEED = SPEED * 2
+        SPEED = SPEED + 2
         if(SPEED == 4):
             SPEED = 1
     elif event.char == 'a': # Turning left
         display.drawEyes(2)
-        t.setServo(1, 6000 + (SPEED * ROTATION * 4))
+        t.setServo(1, 6000 + (SPEED * ROTATION * 8))
         time.sleep(1)
         t.reset(1)
     elif event.char == 'd': # Turning right
         display.drawEyes(4)
-        t.setServo(1, 6000 - (SPEED * ROTATION * 4))
+        t.setServo(1, 6000 - (SPEED * ROTATION * 8))
         time.sleep(1)
         t.reset(1)
     elif event.char == '-': # Changing direction
@@ -51,9 +51,9 @@ def key_pressed(event, t, display):
         t.moveServo(2, ROTATION * DIRECTION)
     elif event.char == ',': # Turning head
         if DIRECTION == 1:
-            display.drawEyes(4)
-        else:
             display.drawEyes(2)
+        else:
+            display.drawEyes(4)
         t.moveServo(3, ROTATION * DIRECTION)
     elif event.char == '.': # Tilting head
         if DIRECTION == 1:
