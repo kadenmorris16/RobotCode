@@ -1,5 +1,6 @@
 from tango import Tango
 from threading import Thread
+import tkinter as tk
 import time
 from screen import Screen
 
@@ -118,4 +119,6 @@ def run(root):
     root.bind("<Key>", lambda event: key_pressed(event, tango, display))
 
 if __name__ == "__main__":
-    run()
+    root=tk.Tk()
+    run(root)
+    root.mainloop()
