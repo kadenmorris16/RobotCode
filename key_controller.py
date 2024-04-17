@@ -48,7 +48,7 @@ def key_pressed(event, t, display):
             display.drawEyes(2)
         else:
             display.drawEyes(4)
-        t.moveServo(2, ROTATION * DIRECTION)
+        t.moveServo(2, ROTATION * DIRECTION * 2)
     elif event.char == ',': # Turning head
         if DIRECTION == 1:
             display.drawEyes(2)
