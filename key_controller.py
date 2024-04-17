@@ -4,7 +4,7 @@ import time
 from screen import Screen
 from gestures import Gesture
 
-def key_pressed(event, t, display):
+def key_pressed(event, t, display, gesture):
 
     text = "Hey there! My name is Bobby."
     word = "Go Bobcats!"
@@ -108,6 +108,7 @@ def key_pressed(event, t, display):
     elif event.char == '2':
         display.printWordSpiral(word, 150, True)
     elif event.char == '3':
+        gesture.start()
         display.drawEyes(5)
     
  
@@ -120,7 +121,7 @@ def run(root):
     gesture = Gesture(tango)
     gesture.start()
 
-    root.bind("<Key>", lambda event: key_pressed(event, tango, display))
+    root.bind("<Key>", lambda event: key_pressed(event, tango, display, gesture))
 
 if __name__ == "__main__":
     root=tk.Tk()
