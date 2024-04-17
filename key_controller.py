@@ -12,32 +12,32 @@ def key_pressed(event, t, display):
     # Movement variables
     global DIRECTION
     ROTATION = 200
-    SPEED = 2   
+    SPEED = 1   
 
     # WHEELS
     if event.char == 'w': # Moving forward
         display.move()
         t.setServo(0, 6000 - (SPEED * ROTATION * 4))
-        time.sleep(1)
+        time.sleep(0.8)
         t.reset(0)
     elif event.char == 's': # Moving backward
         display.move()
         t.setServo(0, 6000 + (SPEED * ROTATION * 4))
-        time.sleep(1)
+        time.sleep(0.8)
         t.reset(0)
     elif(event.char == '='): # incrememnt speed
-        SPEED = SPEED + 2
+        SPEED = SPEED + 1
         if(SPEED == 4):
             SPEED = 1
     elif event.char == 'a': # Turning left
         display.drawEyes(2)
         t.setServo(1, 6000 + (SPEED * ROTATION * 8))
-        time.sleep(1)
+        time.sleep(0.8)
         t.reset(1)
     elif event.char == 'd': # Turning right
         display.drawEyes(4)
         t.setServo(1, 6000 - (SPEED * ROTATION * 8))
-        time.sleep(1)
+        time.sleep(0.8)
         t.reset(1)
     elif event.char == '-': # Changing direction
         DIRECTION *= -1
