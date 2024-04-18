@@ -98,9 +98,9 @@ class Gesture:
         pass
 
     def smoothMove(self, port, finalPosition):
-        self.t.setSpeed(port, 20)
+        self.t.setSpeed(port, 1)
         self.t.setServo(port, finalPosition)
-        self.t.setSpeed(port, 60)
+        self.t.setSpeed(port, 50)
 
         # movement = 100
         # position = self.t.getPosition(port)
