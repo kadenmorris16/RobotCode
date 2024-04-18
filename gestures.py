@@ -106,22 +106,23 @@ class Gesture:
     def smoothMove(self, port, finalPosition):
         movement = 100
         position = self.t.getPosition(port)
-        if position > finalPosition:
-            direction = -1
-        else:
-            direcion = 1
-        while position != finalPosition:
-            if direction == -1:
-                if(position + movement < finalPosition):
-                    self.t.setServo(port, finalPosition)
-                else:
-                    self.t.moveServo(port, movement)
-            else:
-                if(position + movement > finalPosition):
-                    self.t.setServo(port, finalPosition)
-                else:
-                    self.t.moveServo(port, movement)
-            time.sleep(0.05)
+        print(port, "-", position, finalPosition)
+        # if position > finalPosition:
+        #     direction = -1
+        # else:
+        #     direcion = 1
+        # while position != finalPosition:
+        #     if direction == -1:
+        #         if(position + movement < finalPosition):
+        #             self.t.setServo(port, finalPosition)
+        #         else:
+        #             self.t.moveServo(port, movement)
+        #     else:
+        #         if(position + movement > finalPosition):
+        #             self.t.setServo(port, finalPosition)
+        #         else:
+        #             self.t.moveServo(port, movement)
+        #     time.sleep(0.05)
 
 def run(tango):
     g = Gesture(tango)
