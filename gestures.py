@@ -172,32 +172,32 @@ class Gesture:
 
     def headUp(self):
         self.smoothMove(4, 1750 * 4) # tilt head (+ = up)
-        time.sleep(0.3)
+        time.sleep(1)
         self.smoothMove(4, 1460 * 4) # tilt head (+ = up)
 
     def headDown(self):
         self.smoothMove(4, 1100 * 4) # tilt head (+ = up)
-        time.sleep(0.3)
+        time.sleep(1)
         self.smoothMove(4, 1460 * 4) # tilt head (+ = up)
 
     def headLeft(self):
         self.smoothMove(3, 2000 * 4) # turn head (+ = left)
-        time.sleep(0.3)
+        time.sleep(1)
         self.smoothMove(3, 1500 * 4) # turn head (+ = left)
 
     def headRight(self):
         self.smoothMove(3, 992 * 4) # turn head (+ = left)
-        time.sleep(0.3)
+        time.sleep(1)
         self.smoothMove(3, 1500 * 4) # turn head (+ = left)
 
     def torsoLeft(self):
         self.smoothMove(2, 1900 * 4) # waist (+ = left)
-        time.sleep(0.3)
+        time.sleep(1)
         self.smoothMove(2, 1500 * 4) # waist (+ = left)
 
     def torsoRight(self):
         self.smoothMove(2, 1000 * 4) # waist (+ = left)
-        time.sleep(0.3)
+        time.sleep(1)
         self.smoothMove(2, 1500 * 4) # waist (+ = left)
 
     def smoothMove(self, port, finalPosition):
@@ -246,7 +246,7 @@ class Gesture:
             elif rand == 15:
                 self.torsoRight()
 
-            time.sleep(1)
+            time.sleep(2)
 
 
 def run(tango):
