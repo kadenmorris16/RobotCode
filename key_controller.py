@@ -114,9 +114,9 @@ def key_pressed(event, t, display, gesture):
         display.drawEyes(5)
     elif event.char == '4':
         t1 = Thread(target = display.printText, args=(speech, 12, True,)).start()
-        t2 = Thread(target = gesture.infiniteRandomGestures).start()
+        Thread(target = gesture.infiniteRandomGestures).start()
         t1.join()
-        t2.cancel()
+        gesture.stopLoop()
         display.drawEyes(5)
     
 def run(root):
