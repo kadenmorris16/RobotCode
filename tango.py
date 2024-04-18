@@ -38,3 +38,6 @@ class Tango:
     def reset(self, port):
         self.tango.setTarget(port, 6000)
         return
+    
+    def getPosition(self, port):
+        return self.tango.getPosition(port)
