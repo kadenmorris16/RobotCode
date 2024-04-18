@@ -98,7 +98,7 @@ class Gesture:
         pass
 
     def smoothMove(self, port, finalPosition):
-        self.t.setSpeed(port, 30)
+        self.t.setSpeed(port, 20)
         self.t.setServo(port, finalPosition)
         self.t.setSpeed(port, 60)
 
@@ -129,6 +129,8 @@ def run(tango):
     g.armsUp()
     time.sleep(1)
     g.armsDown()
+    time.sleep(1)
+    g.start()
 
 
 if __name__ == "__main__":
