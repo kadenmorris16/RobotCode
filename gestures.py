@@ -127,8 +127,8 @@ def run(tango):
     g = Gesture(tango)
     g.start()
     time.sleep(1)
-    g.armsUp
-    g.armsDown
+    g.armsUp()
+    g.armsDown()
 
 
 if __name__ == "__main__":
