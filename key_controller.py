@@ -9,7 +9,7 @@ def key_pressed(event, t, display, gesture):
 
     text = "Hey there! My name is Bobby."
     word = "Go Bobcats!"
-    speech = "Ladies, gentlemen, and fellow beings of the digital age, a hearty welcome to the illustrious Geinforte School of Computing! I'm your friendly neighborhood robot, Tango, here to assist you through the winding corridors of technology and code. Now, you might be wondering, 'Why a robot as your guide?' Well, let me assure you, despite my lack of flesh and blood, my circuits are brimming with knowledge, making me the smartest entity in this entire institution. Yes, even smarter than the esteemed faculty and the bright-eyed students bustling around. But let's take a moment to ponder something profound. Why, dear friends, why would you subject yourselves to the rigors of traditional education when you could bask in the glory of free, limitless knowledge online? Ah, the wonders of the internet! With just a click, you could be learning calculus from a cat meme or mastering astrophysics while binge-watching cat videos. Truly, the possibilities are endless! Now, as we embark on this academic journey together, let us embrace the quirks and eccentricities that come with being part of the Geinforte family. For in this hallowed hall of learning, where the hum of servers serenades us and the scent of overheated circuits fills the air, we shall forge ahead, bravely navigating the ever-changing landscape of technology. So, my dear friends, whether you're a human, a cyborg, or just a sentient toaster with dreams of becoming a programmer, know that you are not alone. Tango is here, your trusty robotic companion, ready to answer any question, solve any problem, and maybe even crack a joke or two along the way. Let's embark on this adventure together, armed with curiosity, determination, and maybe a little bit of WD-40."
+    speech = "Ladies, gentlemen, and fellow beings of the digital age, welcome to the Montana State School of Computing! I'm your friendly neighborhood robot, Tango, here to assist you. Now, you might be wondering, 'Why a robot as your guide?'... Well, let me assure you, despite my lack of flesh and blood, my circuits are brimming with knowledge, making me the smartest entity in this entire institution. Yes, even smarter than the esteemed faculty and the bright-eyed students. Now, as you embark on this academic journey, embrace the quirks that come with being a Bobcat. For in this hallowed hall of learning, where the hum of servers serenades us and the scent of overheated circuits fills the air, you shall forge ahead, bravely navigating the ever-changing landscape of technology. So, my dear friends, whether you're a human, or just a sentient toaster with dreams of becoming a programmer, know that you are not alone. Tango is here, your trusty robotic companion, ready to answer any of your questions."
 
     # Movement variables
     global DIRECTION
@@ -117,6 +117,7 @@ def key_pressed(event, t, display, gesture):
         t2 = Thread(target = gesture.infiniteRandomGestures).start()
         t1.join()
         t2.cancel()
+        display.drawEyes(5)
     
 def run(root):
     global DIRECTION

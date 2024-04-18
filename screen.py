@@ -146,17 +146,33 @@ class Screen:
 
     def printText(self, textContent, fontSize, speak):
         self.clear()
-        self.canvas.create_text(self.canvas.winfo_screenwidth()//2, self.canvas.winfo_screenheight()//2, text=textContent, font=("Helvetica", fontSize), fill="black")
+        screen_width = self.canvas.winfo_screenwidth()
+        print(screen_width)
+        string = ""
+        counter = 0
+        counterFlag = False
+
+        for i in textContent:
+            string += i
+            counter += 1
+            if counter >= screen_width//(fontSize * 2 / 3):
+                counterFlag = True
+            if i == " " and counterFlag:
+                string += "\n"
+                counter = 0
+                counterFlag = False
+
+        self.canvas.create_text(screen_width//2, self.canvas.winfo_screenheight()//2, text=string, font=("Helvetica", fontSize), fill="black")
         
         if speak:
             threading.Thread(target=self.speech.speak, args=(textContent,)).start()
-
 
 def run():
     root = tk.Tk()
     display = Screen(root)
     text = "Hey there! My name is Bobby."
     word = "Go Bobcats!"
+    speech = "Ladies, gentlemen, and fellow beings of the digital age, welcome to the Montana State School of Computing! I'm your friendly neighborhood robot, Tango, here to assist you. Now, you might be wondering, 'Why a robot as your guide?'... Well, let me assure you, despite my lack of flesh and blood, my circuits are brimming with knowledge, making me the smartest entity in this entire institution. Yes, even smarter than the esteemed faculty and the bright-eyed students. Now, as you embark on this academic journey, embrace the quirks that come with being a Bobcat. For in this hallowed hall of learning, where the hum of servers serenades us and the scent of overheated circuits fills the air, you shall forge ahead, bravely navigating the ever-changing landscape of technology. So, my dear friends, whether you're a human, or just a sentient toaster with dreams of becoming a programmer, know that you are not alone. Tango is here, your trusty robotic companion, ready to answer any of your questions."
 
     def on_key_press(event):
 
@@ -164,7 +180,7 @@ def run():
         if event.char == '1':
             display.move()
         elif event.char == '2':
-            display.printText(text, 20, True)
+            display.printText(speech, 20, True)
         elif event.char == '3':
             display.printWordSpiral(word, 150, True)
         elif event.char == '4':
