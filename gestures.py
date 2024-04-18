@@ -133,6 +133,7 @@ def run(tango):
     g.start()
     time.sleep(1)
     g.armsUp()
+    time.sleep(1)
     g.armsDown()
 
 
