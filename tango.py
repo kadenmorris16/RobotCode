@@ -41,3 +41,7 @@ class Tango:
     
     def getPosition(self, port):
         return self.tango.getPosition(port)
+    
+    def setSpeed(self, port, speed):
+        self.tango.setSpeed(port, speed)
+        return
