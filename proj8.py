@@ -71,16 +71,16 @@ def getDirection(target, closest):
 def turn(rotations, direction):
     for i in range(rotations):
         if(direction == 'r'):
-            tango.setServo(1, 4800)
+            tango.setServo(1, 4600)
             time.sleep(0.6)
             tango.reset(1)
         elif(direction == 'l'):
-            tango.setServo(1, 7200)
+            tango.setServo(1, 7400)
             time.sleep(0.6)
             tango.reset(1)
 
 def moveForward():
-    tango.setServo(0, 5200)
+    tango.setServo(0, 5400)
     time.sleep(0.8)
     tango.reset(0)
 
