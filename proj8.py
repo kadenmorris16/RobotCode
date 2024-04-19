@@ -2,17 +2,10 @@ import serial
 import math
 import pyttsx3
 import time
-#import key_controller
+from tango import Tango
 
 engine = pyttsx3.init()
-#k_c = key_controller.run()
-
-#Old method, probably won't work
-def calculateAngle(distances, closest, opposite):
-    dx = distances[opposite] - distances[closest]
-    dy = distances[(opposite + 1) % 4] - distances[closest]
-    angle = math.degrees(math.atan2(dy, dx))
-    return angle
+tango = Tango()
 
 def findClosestAnchor(distances):
     closest = 0 #Closest anchor number
@@ -52,11 +45,44 @@ def determineAngle(d_before, d_after, target):
     print("Between anchors " + str(closest) + " and " + str(next))
     #Figure out the rest after testing
 
-    if(closest == target):
+    if(closest == target): #Probably don't need to adjust
         print("FACING TARGET")
-        #move(d_after, target)
-    elif(closest == findOppositeAnchor(target)):
+        move(d_after, target)
+    elif(closest == findOppositeAnchor(target)): #Should do a ~180 degree turn
         print("FACING OPPOSITE")
+        turn(4, 'r')
+    elif(next == target): # Turn 45 degrees from closest
+        turn(1, getDirection())
+    else: # Target is in position 3, so do a 3/4 turn
+        turn(3, getDirection())
+
+def getDirection(target, closest):
+    anchors = [0, 1, 2, 3]
+    if(closest == 0 and target == 3):
+        return 'r'
+    elif(closest == 3 and target == 0):
+        return 'l'
+    else:
+        if(target > closest):
+            return 'r'
+        elif(target < closest):
+            return 'l'
+
+def turn(rotations, direction):
+    for i in range(rotations):
+        if(direction == 'r'):
+            tango.setServo(1, 4800)
+            time.sleep(0.6)
+            tango.reset(1)
+        elif(direction == 'l'):
+            tango.setServo(1, 7200)
+            time.sleep(0.6)
+            tango.reset(1)
+
+def moveForward():
+    tango.setServo(0, 5200)
+    time.sleep(0.8)
+    tango.reset(0)
 
 
 
@@ -67,7 +93,7 @@ def move(distances, anchor):
 
     #In theory, should exit loop once the distance between the anchor and robot begins to increase again
     while(current_distance <= last_distance):
-        # move robot forward 0.5m
+        moveForward()
         last_distance = current_distance
         current_distance = getSerialData()[anchor]
         time.sleep(0.5)
@@ -104,6 +130,7 @@ def getSerialData():
         total = all_distances[0][i] + all_distances[1][i] + all_distances[2][i]
         final_dist[i] = total / 3.0
     print(final_dist)
+    ser.close()
     return final_dist
                 
 
@@ -123,18 +150,9 @@ def run():
 
     # Figure out angle
     time.sleep(1)
-    angle = determineAngle(distances, getSerialData(), closest)
-
-    # Correct angle to face (anchor or a specific direction?)
-    initial_direction = ""
-    if angle < -45 and angle >= -135:
-        initial_direction = "Facing up"
-    elif angle >= 45 and angle < 135:
-        initial_direction = "Facing down"
-    elif angle >= 135 or angle < -135:
-        initial_direction = "Facing left"
-    else:
-        initial_direction = "Facing right"
+    #Move forward slightly
+    moveForward()
+    determineAngle(distances, getSerialData(), closest)
 
     # Move out of boundary 
     move(distances, closest)
