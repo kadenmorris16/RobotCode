@@ -31,5 +31,7 @@ def getDistance():
     distance = round(distance, 2)
     return distance
 
-getDistance()
+while True:
+    print(getDistance())
+    time.sleep(1)
 
