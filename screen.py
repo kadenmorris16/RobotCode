@@ -142,7 +142,6 @@ class Screen:
     def printText(self, textContent, fontSize):
         self.clear()
         screen_width = self.canvas.winfo_screenwidth()
-        print(screen_width)
         string = ""
         counter = 0
         counterFlag = False
