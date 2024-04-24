@@ -86,11 +86,11 @@ def determineAngle(d_before, d_after, target):
         move(d_after, target)
     elif(closest == findOppositeAnchor(target)): #Should do a ~180 degree turn
         print("FACING OPPOSITE")
-        turn(4, 'r')
+        turn(3, 'r')
     elif(next == target): # Turn 45 degrees from closest
         turn(1, getDirection())
     else: # Target is in position 3, so do a 3/4 turn
-        turn(3, getDirection())
+        turn(2, getDirection())
 
 def getDirection(target, closest):
     anchors = [0, 1, 2, 3]
