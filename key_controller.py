@@ -118,6 +118,7 @@ def key_pressed(event, t, display, gesture):
         t1.join()
         gesture.stopLoop()
         display.drawEyes(5)
+        gesture.start()
     
 def run(root):
     global DIRECTION
