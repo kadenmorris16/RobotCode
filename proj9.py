@@ -12,7 +12,7 @@ GPIO.setmode(GPIO.BCM)
 
 TRIG = 23
 ECHO = 24
-THRESHOLD = 1 # Distance at which the robot stops for obstactle
+THRESHOLD = 50 # Distance at which the robot stops for obstactle
 
 GPIO.setup(TRIG, GPIO.OUT)
 GPIO.setup(ECHO, GPIO.IN)
@@ -28,6 +28,10 @@ def getDistance():
     pulse_start = time.time()
     timeout = time.time()
     while GPIO.input(ECHO) == 0:
+        if(time.time() - timeout) > 3:
+            print("Timeout occurred while receiving echo signal")
+            return None
+    while GPIO.input(ECHO) == 1:
         if(time.time() - timeout) > 3:
             print("Timeout occurred while receiving echo signal")
             return None
