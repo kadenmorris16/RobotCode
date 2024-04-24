@@ -165,9 +165,7 @@ class Screen:
         self.canvas.create_text(screen_width//2, self.canvas.winfo_screenheight()//2, text=string, font=("Helvetica", fontSize), fill="black")
         
         if speak:
-            t1 = threading.Thread(target=self.speech.speak, args=(textContent,))
-            t1.start()
-            t1.join()
+            threading.Thread(target=self.speech.speak, args=(textContent,)).start()
 
 def run():
     root = tk.Tk()
