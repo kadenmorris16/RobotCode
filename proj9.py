@@ -12,7 +12,7 @@ GPIO.setmode(GPIO.BCM)
 
 TRIG = 23
 ECHO = 24
-THRESHOLD = 50 # Distance at which the robot stops for obstactle
+THRESHOLD = 70 # Distance at which the robot stops for obstactle
 
 GPIO.setup(TRIG, GPIO.OUT)
 GPIO.setup(ECHO, GPIO.IN)
@@ -107,17 +107,17 @@ def getDirection(target, closest):
 def turn(rotations, direction):
     for i in range(rotations):
         if(direction == 'r'):
-            tango.setServo(1, 4600)
+            tango.setServo(1, 5000)
             time.sleep(0.8)
             tango.reset(1)
         elif(direction == 'l'):
-            tango.setServo(1, 7400)
+            tango.setServo(1, 7000)
             time.sleep(0.8)
             tango.reset(1)
 
 def moveForward():
     if(getDistance() > THRESHOLD):
-        tango.setServo(0, 5400)
+        tango.setServo(0, 5200)
         time.sleep(1.4)
         tango.reset(0)
     else:
