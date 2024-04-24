@@ -4,8 +4,9 @@ import time
 from screen import Screen
 from gestures import Gesture
 from threading import Thread
+from speech import TTS
 
-def key_pressed(event, t, display, gesture):
+def key_pressed(event, t, display, gesture, speech):
 
     text = "Hey there! My name is Bobby. Its nice to meet you..."
     word = "Go Bobcats!"
@@ -106,16 +107,19 @@ def key_pressed(event, t, display, gesture):
 
     # TEST DISPLAY WORDS
     elif event.char == '1':
-        display.printText(text, 20, True)
+        display.printText(text, 20)
+        Thread(target=speech.speak, args=(text,)).start()
     elif event.char == '2':
-        display.printWordSpiral(word, 150, True)
+        display.printWordSpiral(word, 150)
+        Thread(target=speech.speak, args=(word,)).start()
     elif event.char == '3':
         gesture.start()
         display.drawEyes(5)
     elif event.char == '4':
-        t1 = Thread(target = display.printText, args=(speech, 12, True,))
-        Thread(target = gesture.infiniteRandomGestures).start()
+        display.printText(speech, 12)
+        t1 = Thread(target=speech.speak, args=(speech,))
         t1.start()
+        Thread(target=gesture.infiniteRandomGestures).start()
         t1.join()
         gesture.stopLoop()
         print("loop Stopped ----------------------")
@@ -128,10 +132,11 @@ def run(root):
 
     tango = Tango()
     display = Screen(root)
+    speech = TTS()
     gesture = Gesture(tango)
     gesture.start()
 
-    root.bind("<Key>", lambda event: key_pressed(event, tango, display, gesture))
+    root.bind("<Key>", lambda event: key_pressed(event, tango, display, gesture, speech))
 
 if __name__ == "__main__":
     root=tk.Tk()

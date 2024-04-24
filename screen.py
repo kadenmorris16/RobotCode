@@ -1,7 +1,6 @@
 import tkinter as tk
 import random
 import threading
-from speech import TTS
 
 class Screen:
     def __init__(self, root):
@@ -14,7 +13,6 @@ class Screen:
         self.spiralId = None
         self.blinkId  = None
         self.nextBlinkId = None
-        self.speech = TTS()
 
         self.drawEyes(0)
     
@@ -128,14 +126,11 @@ class Screen:
             velo *= -1
         self.moveFigureId = self.canvas.after(10, lambda: self.moveFigure(velo))
 
-    def printWordSpiral(self, word, fontSize, speak):
+    def printWordSpiral(self, word, fontSize):
         self.clear()
         self.canvas.create_text(self.canvas.winfo_screenwidth() // 2, self.canvas.winfo_screenheight() // 2, text=word, font=("Helvetica", fontSize, "bold"), fill="black", tags="word")
 
         self.spiral(0, fontSize, fontSize)
-
-        if speak:
-            threading.Thread(target=self.speech.speak, args=(word,)).start()
 
     def spiral(self, angle, initialSize, currentSize):
         self.canvas.itemconfig("word", angle=angle, font=("Helvetica", currentSize, "bold"))
@@ -144,7 +139,7 @@ class Screen:
             angle = -30
         self.spiralId = self.canvas.after(100, lambda: self.spiral(angle + 30, initialSize, currentSize - 5))
 
-    def printText(self, textContent, fontSize, speak):
+    def printText(self, textContent, fontSize):
         self.clear()
         screen_width = self.canvas.winfo_screenwidth()
         print(screen_width)
@@ -163,9 +158,6 @@ class Screen:
                 counterFlag = False
 
         self.canvas.create_text(screen_width//2, self.canvas.winfo_screenheight()//2, text=string, font=("Helvetica", fontSize), fill="black")
-        
-        if speak:
-            threading.Thread(target=self.speech.speak, args=(textContent,)).start()
 
 def run():
     root = tk.Tk()
