@@ -121,7 +121,7 @@ def key_pressed(event, t, display, gesture, speechBot):
         Thread(target=gesture.infiniteRandomGestures).start()
         t1 = Thread(target=speechBot.speak, args=(speech,))
         t1.start()
-        t1.join()
+        #t1.join()
         gesture.stopLoop()
         display.drawEyes(5)
         gesture.start()
