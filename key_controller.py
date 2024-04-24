@@ -116,9 +116,8 @@ def key_pressed(event, t, display, gesture, speechBot):
         gesture.start()
         display.drawEyes(5)
     elif event.char == '4':
-        display.printText(speech, 12)
-        t0 = Thread(target=gesture.infiniteRandomGestures)
-        t0.start()
+        Thread(target=display.printText, args=(speech, 12,)).start()
+        Thread(target=gesture.infiniteRandomGestures).start()
         t1 = Thread(target=speechBot.speak, args=(speech,))
         t1.start()
         t1.join()
