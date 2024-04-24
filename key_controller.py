@@ -117,13 +117,13 @@ def key_pressed(event, t, display, gesture, speechBot):
         display.drawEyes(5)
     elif event.char == '4':
         display.printText(speech, 12)
-        t1 = Thread(target=speechBot.speak, args=(speech,))
-        t1.start()
-        Thread(target=gesture.infiniteRandomGestures).start()
-        t1.join()
-        gesture.stopLoop()
-        display.drawEyes(5)
-        gesture.start()
+        # t1 = Thread(target=speechBot.speak, args=(speech,))
+        # t1.start()
+        # Thread(target=gesture.infiniteRandomGestures).start()
+        # t1.join()
+        # gesture.stopLoop()
+        # display.drawEyes(5)
+        # gesture.start()
     elif event.char == '5':
         # test random gestures stops after 10 seconds
         Thread(target=gesture.infiniteRandomGestures).start()
