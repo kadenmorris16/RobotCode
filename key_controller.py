@@ -3,7 +3,7 @@ import tkinter as tk
 import time
 from screen import Screen
 from gestures import Gesture
-from threading import Thread
+from threading import Thread, Event
 from speech import TTS
 
 def key_pressed(event, t, display, gesture, speechBot):
@@ -105,31 +105,33 @@ def key_pressed(event, t, display, gesture, speechBot):
         display.drawEyes(5)
         t.moveServo(16, ROTATION * DIRECTION)
 
-    # TEST DISPLAY WORDS
+    # DISPLAY WORDS
     elif event.char == '1':
-        display.printText(text, 20)
-        Thread(target=speechBot.speak, args=(text,)).start()
-    elif event.char == '2':
-        display.printWordSpiral(word, 150)
-        Thread(target=speechBot.speak, args=(word,)).start()
-    elif event.char == '3':
         gesture.start()
         display.drawEyes(5)
+    elif event.char == '2':
+        display.printText(text, 20)
+        Thread(target=speechBot.speak, args=(text,)).start()
+    elif event.char == '3':
+        display.printWordSpiral(word, 150)
+        Thread(target=speechBot.speak, args=(word,)).start()
     elif event.char == '4':
-        display.printText(speech, 12,)
-        time.sleep(1)
+        textPrinted = Event()
+        textPrinted.clear()
+
+        def printAndSet():
+            display.printText(speech, 12,)
+            textPrinted.set()
+
+        Thread(target=printAndSet).start()
+        textPrinted.wait()
+
         Thread(target=gesture.infiniteRandomGestures).start()
         t1 = Thread(target=speechBot.speak, args=(speech,))
         t1.start()
-        #t1.join()
+        t1.join()
         gesture.stopLoop()
         display.drawEyes(5)
-        gesture.start()
-    elif event.char == '5':
-        # test random gestures stops after 10 seconds
-        Thread(target=gesture.infiniteRandomGestures).start()
-        time.sleep(10)
-        gesture.stopLoop()
         gesture.start()
     
 def run(root):
