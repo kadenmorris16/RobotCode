@@ -114,8 +114,8 @@ def key_pressed(event, t, display, gesture):
         display.drawEyes(5)
     elif event.char == '4':
         t1 = Thread(target = display.printText, args=(speech, 12, True,))
-        t1.start()
         Thread(target = gesture.infiniteRandomGestures).start()
+        t1.start()
         t1.join()
         gesture.stopLoop()
         print("loop Stopped ----------------------")
