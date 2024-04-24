@@ -6,7 +6,7 @@ import random
 class Gesture:
     def __init__(self, tango):
         self.t = tango
-        self.stopLoop = False
+        self.stopFlag = False
 
     def reset(self): # left arm does not reset right
         for i in range(14):
@@ -206,11 +206,11 @@ class Gesture:
         self.t.setSpeed(port, 50)
 
     def stopLoop(self):
-        self.stopLoop = True
+        self.stopFlag = True
 
     def infiniteRandomGestures(self):
-        self.stopLoop = False
-        while(not self.stopLoop):
+        self.stopFlag = False
+        while(not self.stopFlag):
             rand = random.randint(0,15)
 
             if rand == 0:

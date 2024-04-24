@@ -129,6 +129,7 @@ def key_pressed(event, t, display, gesture, speech):
         Thread(target=gesture.infiniteRandomGestures).start()
         time.sleep(10)
         gesture.stopLoop()
+        gesture.start()
     
 def run(root):
     global DIRECTION
