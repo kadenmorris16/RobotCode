@@ -108,18 +108,23 @@ def turn(rotations, direction):
     for i in range(rotations):
         if(direction == 'r'):
             tango.setServo(1, 4600)
-            time.sleep(0.6)
+            time.sleep(0.8)
             tango.reset(1)
         elif(direction == 'l'):
             tango.setServo(1, 7400)
-            time.sleep(0.6)
+            time.sleep(0.8)
             tango.reset(1)
 
 def moveForward():
-    while(getDistance() > THRESHOLD):
+    if(getDistance() > THRESHOLD):
         tango.setServo(0, 5400)
-        time.sleep(0.8)
+        time.sleep(1.4)
         tango.reset(0)
+    else:
+        while(getDistance() < THRESHOLD):
+            print("Something is blocking the way")
+            time.sleep(1)
+        moveForward()
 
 
 # Not very elegant but avoids doing trig, might need to rework after testing
@@ -128,7 +133,7 @@ def move(distances, anchor):
     current_distance = last_distance
 
     #In theory, should exit loop once the distance between the anchor and robot begins to increase again
-    while(current_distance <= last_distance):
+    for i in range(4):
         moveForward()
         last_distance = current_distance
         current_distance = getSerialData()[anchor]
