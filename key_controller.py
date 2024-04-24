@@ -122,9 +122,13 @@ def key_pressed(event, t, display, gesture, speech):
         Thread(target=gesture.infiniteRandomGestures).start()
         t1.join()
         gesture.stopLoop()
-        print("loop Stopped ----------------------")
         display.drawEyes(5)
         gesture.start()
+    elif event.char == '5':
+        # test random gestures stops after 10 seconds
+        Thread(target=gesture.infiniteRandomGestures).start()
+        time.sleep(10)
+        gesture.stopLoop()
     
 def run(root):
     global DIRECTION
