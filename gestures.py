@@ -192,12 +192,12 @@ class Gesture:
 
     def torsoLeft(self):
         self.smoothMove(2, 1900 * 4) # waist (+ = left)
-        time.sleep(0.5)
+        time.sleep(1)
         self.smoothMove(2, 1500 * 4) # waist (+ = left)
 
     def torsoRight(self):
         self.smoothMove(2, 1000 * 4) # waist (+ = left)
-        time.sleep(0.5)
+        time.sleep(1)
         self.smoothMove(2, 1500 * 4) # waist (+ = left)
 
     def smoothMove(self, port, finalPosition):
@@ -246,7 +246,7 @@ class Gesture:
             elif rand == 15:
                 self.torsoRight()
 
-            time.sleep(1)
+            time.sleep(0.8)
 
 
 def run(tango):
