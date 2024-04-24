@@ -6,7 +6,7 @@ from gestures import Gesture
 from threading import Thread
 from speech import TTS
 
-def key_pressed(event, t, display, gesture, speech):
+def key_pressed(event, t, display, gesture, speechBot):
 
     text = "Hey there! My name is Bobby. Its nice to meet you..."
     word = "Go Bobcats!"
@@ -108,16 +108,16 @@ def key_pressed(event, t, display, gesture, speech):
     # TEST DISPLAY WORDS
     elif event.char == '1':
         display.printText(text, 20)
-        Thread(target=speech.speak, args=(text,)).start()
+        Thread(target=speechBot.speak, args=(text,)).start()
     elif event.char == '2':
         display.printWordSpiral(word, 150)
-        Thread(target=speech.speak, args=(word,)).start()
+        Thread(target=speechBot.speak, args=(word,)).start()
     elif event.char == '3':
         gesture.start()
         display.drawEyes(5)
     elif event.char == '4':
         display.printText(speech, 12)
-        t1 = Thread(target=speech.speak, args=(speech,))
+        t1 = Thread(target=speechBot.speak, args=(speech,))
         t1.start()
         Thread(target=gesture.infiniteRandomGestures).start()
         t1.join()
