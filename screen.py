@@ -5,6 +5,7 @@ import threading
 class Screen:
     def __init__(self, root):
         self.root = root
+        self.root.attributes('-zoomed', True)
         self.root.attributes('-fullscreen', True)
         self.canvas = tk.Canvas(self.root, bg="#dcdcdc")
         self.canvas.pack(fill=tk.BOTH, expand=True)
