@@ -117,17 +117,17 @@ def key_pressed(event, t, display, gesture, speechBot):
         Thread(target=speechBot.speak, args=(word,)).start()
     elif event.char == '4':
         display.printText(speech, 12)
-        def contThread():
-            t1 = Thread(target=speechBot.speak, args=(speech,))
-            t1.start()
-            while t1.is_alive():
-                gesture.randomGesture()
-                time.sleep(0.8)
+        root.update_idletasks() 
+        
+        t1 = Thread(target=speechBot.speak, args=(speech,))
+        t1.start()
+        while t1.is_alive():
+            gesture.randomGesture()
+            time.sleep(0.8)
 
-            gesture.stopLoop()
-            display.drawEyes(5)
-            gesture.start()
-        contThread()
+        gesture.stopLoop()
+        display.drawEyes(5)
+        gesture.start()
     elif event.char == '5':
         display.printText(speech, 12)
     
