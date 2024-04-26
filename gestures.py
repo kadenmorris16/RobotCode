@@ -208,45 +208,41 @@ class Gesture:
     def stopLoop(self):
         self.stopFlag = True
 
-    def infiniteRandomGestures(self):
-        self.stopFlag = False
-        while(not self.stopFlag):
-            rand = random.randint(0,15)
+    def randomGesture(self):
+        rand = random.randint(0,15)
 
-            if rand == 0:
-                self.armsUp()
-            elif rand == 1:
-                self.armsDown()
-            elif rand == 2:
-                self.armsOut()
-            elif rand == 3:
-                self.armsIn()
-            elif rand == 4:
-                self.pointLeftDouble()
-            elif rand == 5:
-                self.pointRightDouble()
-            elif rand == 6:
-                self.pointLeftSingle()
-            elif rand == 7:
-                self.pointRightSingle()
-            elif rand == 8:
-                self.armsCrossed()
-            elif rand == 9:
-                self.armsPondering()
-            elif rand == 10:
-                self.headUp()
-            elif rand == 11:
-                self.headDown()
-            elif rand == 12:
-                self.headLeft()
-            elif rand == 13:
-                self.headRight()
-            elif rand == 14:
-                self.torsoLeft()
-            elif rand == 15:
-                self.torsoRight()
-
-            time.sleep(0.8)
+        if rand == 0:
+            self.armsUp()
+        elif rand == 1:
+            self.armsDown()
+        elif rand == 2:
+            self.armsOut()
+        elif rand == 3:
+            self.armsIn()
+        elif rand == 4:
+            self.pointLeftDouble()
+        elif rand == 5:
+            self.pointRightDouble()
+        elif rand == 6:
+            self.pointLeftSingle()
+        elif rand == 7:
+            self.pointRightSingle()
+        elif rand == 8:
+            self.armsCrossed()
+        elif rand == 9:
+            self.armsPondering()
+        elif rand == 10:
+            self.headUp()
+        elif rand == 11:
+            self.headDown()
+        elif rand == 12:
+            self.headLeft()
+        elif rand == 13:
+            self.headRight()
+        elif rand == 14:
+            self.torsoLeft()
+        elif rand == 15:
+            self.torsoRight()
 
 
 def run(tango):
