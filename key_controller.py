@@ -116,10 +116,9 @@ def key_pressed(event, t, display, gesture, speechBot):
         display.printWordSpiral(word, 150)
         Thread(target=speechBot.speak, args=(word,)).start()
     elif event.char == '4':
-        display.printText(speech, 12)
-
         t1 = Thread(target=speechBot.speak, args=(speech,))
         t1.start()
+        display.printText(speech, 12)
         while t1.is_alive():
             gesture.randomGesture()
             time.sleep(0.8)
