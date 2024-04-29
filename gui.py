@@ -46,7 +46,7 @@ class RobotProgrammingGUI:
         canvas_width = self.canvas.winfo_screenwidth()
         canvas_height = self.canvas.winfo_screenheight()
         initial_x = (canvas_width - total_width) / 2  # Calculate initial x-coordinate for the first slot
-        x, y = initial_x, canvas_height // 4
+        x, y = initial_x, canvas_height // 4 - (self.slot_size // 4)
         for name, icon in self.icons.items():
             label = tk.Label(self.root, text=icon, font=("Arial", int(self.slot_size // 2)), bg='lightgray', bd=2, relief=tk.RAISED)
             label.name = name
