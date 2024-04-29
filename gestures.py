@@ -179,14 +179,14 @@ class Gesture:
             Thread(target=self.smoothMove, args=(8, 1560 * 4,)).start() # r forearm (+ = up)
             Thread(target=self.smoothMove, args=(9, 1090 * 4,)).start() # r wrist (+ = rotate left)
             Thread(target=self.smoothMove, args=(10, 1100 * 4,)).start() # r gripper (+ = close)
-            time.sleep(0.5)
+            time.sleep(0.4)
             Thread(target=self.smoothMove, args=(5, 1980 * 4,)).start() # r shoulder (+ = up)
             Thread(target=self.smoothMove, args=(6, 1980 * 4,)).start() # r bicep (+ = out)
             Thread(target=self.smoothMove, args=(7, 1500 * 4,)).start() # r elbow (+ = up)
             Thread(target=self.smoothMove, args=(8, 1359 * 4,)).start() # r forearm (+ = up)
             Thread(target=self.smoothMove, args=(9, 1090 * 4,)).start() # r wrist (+ = rotate left)
             Thread(target=self.smoothMove, args=(10, 1100 * 4,)).start() # r gripper (+ = close)
-            time.sleep(0.5)
+            time.sleep(0.4)
 
     def headUp(self):
         self.smoothMove(4, 1750 * 4) # tilt head (+ = up)
