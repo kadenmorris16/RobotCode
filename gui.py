@@ -56,7 +56,7 @@ class RobotProgrammingGUI:
 
     def create_buttons(self):
         # Play button
-        play_button = tk.Label(self.root, text="▶️", font=("Arial", int(self.slot_size // 2)), bg='lightgray', bd=2, relief=tk.RAISED)
+        play_button = tk.Label(self.root, text="🟢", font=("Arial", int(self.slot_size // 2)), bg='lightgray', bd=2, relief=tk.RAISED)
         play_button.bind("<ButtonPress-1>", lambda event: self.play_timeline())
         play_button.place(relx=0.6, rely=0.8, anchor=tk.CENTER)
 
@@ -259,7 +259,7 @@ class RobotProgrammingGUI:
             gesture_option_menu.grid(row=0, column=1)
 
         # Apply button
-        apply_button = tk.Button(popup_window, text="🟢", command=lambda: self.apply_adjustments(icon_name, popup_window), font=("Arial", font_size), padx=10, pady=5, borderwidth=2, relief=tk.RAISED, background="lightgray")
+        apply_button = tk.Button(popup_window, text="☑️", command=lambda: self.apply_adjustments(icon_name, popup_window), font=("Arial", font_size), padx=10, pady=5, borderwidth=2, relief=tk.RAISED, background="lightgray")
         apply_button.pack(pady=(font_size,font_size))
 
     def apply_adjustments(self, icon_name, popup_window):
