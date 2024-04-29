@@ -118,6 +118,8 @@ def key_pressed(event, t, display, gesture, speechBot):
     elif event.char == '4':
         display.printText(speech, 12)
         root.update_idletasks() 
+    elif event.char == '5':
+        display.gui()
         
         t1 = Thread(target=speechBot.speak, args=(speech,))
         t1.start()
