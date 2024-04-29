@@ -88,7 +88,7 @@ class RobotProgrammingGUI:
 
 
     def open_popup_window(self, icon_name):
-        popup_width = popup_window.winfo_screenwidth() * 2 / 3
+        popup_width = self.canvas.winfo_screenwidth() * 2 / 3
         popup_height = self.canvas.winfo_screenheight() * 2 / 3
         screen_width = self.canvas.winfo_screenwidth()
         screen_height = self.canvas.winfo_screenheight()
