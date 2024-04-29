@@ -17,8 +17,8 @@ class RobotProgrammingGUI:
         self.icons = {
             "Drive": "🛞",
             "Turn": "🧭",
-            "Head Tilt": "↕️",
-            "Head Turn": "↔️",
+            "Head Tilt": "🙄",
+            "Head Turn": "👀",
             "Waist Turn": "🔄",
             "Listen": "👂",
             "Talk": "🗣",
@@ -259,7 +259,7 @@ class RobotProgrammingGUI:
             gesture_option_menu.grid(row=0, column=1)
 
         # Apply button
-        apply_button = tk.Button(popup_window, text="✅", command=lambda: self.apply_adjustments(icon_name, popup_window), font=("Arial", font_size), padx=10, pady=5, borderwidth=2, relief=tk.RAISED, background="lightgray")
+        apply_button = tk.Button(popup_window, text="▶️", command=lambda: self.apply_adjustments(icon_name, popup_window), font=("Arial", font_size), padx=10, pady=5, borderwidth=2, relief=tk.RAISED, background="lightgray")
         apply_button.pack(pady=(font_size,font_size))
 
     def apply_adjustments(self, icon_name, popup_window):
