@@ -172,7 +172,7 @@ class Gesture:
 
     def wave(self):
         self.start()
-        for i in range(4):
+        for i in range(3):
             Thread(target=self.smoothMove, args=(5, 1980 * 4,)).start() # r shoulder (+ = up)
             Thread(target=self.smoothMove, args=(6, 1980 * 4,)).start() # r bicep (+ = out)
             Thread(target=self.smoothMove, args=(7, 2050 * 4,)).start() # r elbow (+ = up)
