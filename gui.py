@@ -112,7 +112,7 @@ class RobotProgrammingGUI:
             popup_window.forward_backward_variable = tk.StringVar()
             popup_window.forward_backward_variable.set(forward_backward_options[0])
             forward_backward_option_menu = tk.OptionMenu(forward_backward_frame, popup_window.forward_backward_variable, *forward_backward_options)
-            forward_backward_option_menu.config(font=("Arial", font_size), width=int(font_size/2))
+            forward_backward_option_menu.config(font=("Arial", font_size), width=int(font_size), padx=10, pady=5)
             forward_backward_option_menu.grid(row=0, column=1)
 
             # slider for speed (1-30)
