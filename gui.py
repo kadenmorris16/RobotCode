@@ -115,7 +115,6 @@ class RobotProgrammingGUI:
             forward_backward_option_menu = tk.OptionMenu(forward_backward_frame, popup_window.forward_backward_variable, *forward_backward_options)
             forward_backward_option_menu.config(font=("Arial", font_size), width=int(font_size/2))
             forward_backward_option_menu.grid(row=0, column=1)
-            forward_backward_frame.focus_set()
 
             # slider for speed (1-30)
             speed_frame = tk.Frame(popup_window)
@@ -126,7 +125,6 @@ class RobotProgrammingGUI:
 
             popup_window.speed_slider = tk.Scale(speed_frame, from_=1, to=30, orient=tk.HORIZONTAL, length=popup_width/2, font=("Arial", font_size))
             popup_window.speed_slider.grid(row=0, column=1)
-            speed_frame.focus_set()
 
             # slider for distance (0-5 meters)
             distance_frame = tk.Frame(popup_window)
@@ -137,8 +135,6 @@ class RobotProgrammingGUI:
 
             popup_window.distance_slider = tk.Scale(distance_frame, from_=0, to=5, orient=tk.HORIZONTAL, length=popup_width/2, resolution=0.1, font=("Arial", font_size))
             popup_window.distance_slider.grid(row=0, column=1)
-            distance_frame.focus_set()
-
 
         elif icon_name == "Turn":
             # left/right option
@@ -267,6 +263,7 @@ class RobotProgrammingGUI:
         apply_button.pack(pady=(font_size,font_size))
 
         popup_window.lift()
+        popup_window.focus_force()
 
     def apply_adjustments(self, icon_name, popup_window):
         string = ""
