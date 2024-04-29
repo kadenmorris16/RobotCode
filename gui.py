@@ -38,7 +38,7 @@ class RobotProgrammingGUI:
         initial_x = (canvas_width - total_width) // 2  # Calculate initial x-coordinate for the first slot
         for i in range(self.num_slots):
             x = initial_x + i * self.slot_size
-            y = canvas_height // 2
+            y = canvas_height // 2 - self.slot_size // 2
             self.canvas.create_rectangle(x, y, x + self.slot_size, y + self.slot_size, outline="black", fill="lightblue")
 
     def create_icons(self):
