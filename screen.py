@@ -34,6 +34,9 @@ class Screen:
             self.canvas.after_cancel(self.nextBlinkId)
             self.nextBlinkId = None
         self.canvas.delete("all")
+        for widget in self.root.winfo_children():
+            if isinstance(widget, tk.Label):
+                widget.destroy()
     
     def drawEyes(self, look):
         self.clear()
@@ -159,7 +162,6 @@ class Screen:
 
         self.canvas.create_text(screen_width//2, self.canvas.winfo_screenheight()//2, text=string, font=("Helvetica", fontSize), fill="black")
 
-    #  ---------- GUI CODE -----------
     def gui(self):
         self.clear()
         gui = RobotProgrammingGUI(self.root, self.canvas)

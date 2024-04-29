@@ -162,7 +162,6 @@ class RobotProgrammingGUI:
             popup_window.time_slider = tk.Scale(time_frame, from_=0, to=5, orient=tk.HORIZONTAL, length=popup_width/2, resolution=0.1, font=("Arial", font_size))
             popup_window.time_slider.grid(row=0, column=1)
 
-
         elif icon_name == "Head Tilt":
             # up/down option
             up_down_frame = tk.Frame(popup_window)
@@ -312,12 +311,12 @@ class RobotProgrammingGUI:
                 string += "wave"
         
         self.actions.append(string)
-        #print(string)
 
         popup_window.destroy()
 
     def play_timeline(self):
         parser = RobotProgrammingParser(self.actions)
+        print("Parsing Actions")
 
     def clear_timeline(self):
         self.timeline_slots = [None] * self.num_slots
