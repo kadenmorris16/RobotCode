@@ -228,7 +228,7 @@ class RobotProgrammingGUI:
             talk_label = tk.Label(talk_frame, text="Message:", font=("Arial", font_size))
             talk_label.grid(row=0, column=0, columnspan=2, padx=(10, 20), sticky="nsew")  # Add columnspan and sticky parameter for centering
 
-            talk_options = ["Hi, I am Tango the Robot.", "Get out of my way!", "Welcome to Montana State University"]
+            talk_options = ["Hi, I am Tango the Robot.", "Get out of my way!", "Welcome to Montana State University", "Somebody charge me!"]
             popup_window.talk_variable = tk.StringVar()
             popup_window.talk_variable.set(talk_options[0])
             talk_option_menu = tk.OptionMenu(talk_frame, popup_window.talk_variable, *talk_options)

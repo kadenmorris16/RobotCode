@@ -20,7 +20,13 @@ class RobotProgrammingParser():
         self.run()
 
     def run(self):
+        action_num = 1
         for action_str in self.actions:
+            
+            self.display.printText("Step " + action_num + "/" + len(self.actions), 50)
+            time.sleep(1)
+            self.display.drawEyes(5)
+
             action = action_str.split()
             if action[0] == "Drive":
                 self.completeDrive(action[1:])
@@ -38,6 +44,8 @@ class RobotProgrammingParser():
                 self.completeTalk(" ".join(action[1:]))
             else: #Gesture
                 self.completeGesture(action[1])
+
+            action_num += 1
 
         self.display.gui()
 
