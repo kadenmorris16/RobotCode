@@ -88,16 +88,15 @@ class RobotProgrammingGUI:
 
 
     def open_popup_window(self, icon_name):
-        popup_width = self.canvas.winfo_screenwidth() * 2 / 3
-        popup_height = self.canvas.winfo_screenheight() * 2 / 3
-        screen_width = self.canvas.winfo_screenwidth()
-        screen_height = self.canvas.winfo_screenheight()
-        x_coordinate = (screen_width - popup_width) / 2
-        y_coordinate = (screen_height - popup_height) / 2
+        popup_width = self.canvas.winfo_screenwidth()
+        popup_height = self.canvas.winfo_screenheight()
+        x_coordinate = popup_width // 2
+        y_coordinate = popup_height // 2
 
         popup_window = tk.Toplevel(self.root)
         popup_window.title("Adjust " + icon_name + " Details")
         popup_window.geometry("%dx%d+%d+%d" % (popup_width, popup_height, x_coordinate, y_coordinate))
+
 
         font_size = int(popup_width // 30)
 
@@ -310,6 +309,7 @@ class RobotProgrammingGUI:
                 string += "wave"
         
         self.actions.append(string)
+        print(string)
 
         popup_window.destroy()
         #popup_window.grab_release()
