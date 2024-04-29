@@ -17,8 +17,8 @@ class RobotProgrammingGUI:
         self.icons = {
             "Drive": "🛞",
             "Turn": "🧭",
-            "Head Tilt": "🙂‍↕️",
-            "Head Turn": "🙂‍↔️",
+            "Head Tilt": "↕️",
+            "Head Turn": "↔️",
             "Waist Turn": "🔄",
             "Listen": "👂",
             "Talk": "🗣",
@@ -95,46 +95,45 @@ class RobotProgrammingGUI:
         x_coordinate = (screen_width - popup_width) / 2
         y_coordinate = (screen_height - popup_height) / 2
 
-        popup_window = tk.Tk()
+        popup_window = tk.Toplevel()
         popup_window.title("Adjust " + icon_name + " Details")
-        #popup_window.attributes('-fullscreen', True)
         popup_window.geometry("%dx%d+%d+%d" % (popup_width, popup_height, x_coordinate, y_coordinate))
 
         font_size = int(popup_width // 30)
 
         if icon_name == "Drive":
             # forward/backward option
-            popup_window.forward_backward_frame = tk.Frame(popup_window)
-            popup_window.forward_backward_frame.pack(pady=(font_size,font_size))
+            forward_backward_frame = tk.Frame(popup_window)
+            forward_backward_frame.pack(pady=(font_size,font_size))
 
-            popup_window.forward_backward_label = tk.Label(popup_window.forward_backward_frame, text="Direction:", font=("Arial", font_size))
-            popup_window.forward_backward_label.grid(row=0, column=0, padx=(10, 20))
+            forward_backward_label = tk.Label(forward_backward_frame, text="Direction:", font=("Arial", font_size))
+            forward_backward_label.grid(row=0, column=0, padx=(10, 20))
 
-            popup_window.forward_backward_options = ["Forward", "Backward"]
+            forward_backward_options = ["Forward", "Backward"]
             popup_window.forward_backward_variable = tk.StringVar()
-            popup_window.forward_backward_variable.set(popup_window.forward_backward_options[0])
-            popup_window.forward_backward_option_menu = tk.OptionMenu(popup_window.forward_backward_frame, popup_window.forward_backward_variable, *popup_window.forward_backward_options)
-            popup_window.forward_backward_option_menu.config(font=("Arial", font_size), width=int(font_size/2))
-            popup_window.forward_backward_option_menu.grid(row=0, column=1)
+            popup_window.forward_backward_variable.set(forward_backward_options[0])
+            forward_backward_option_menu = tk.OptionMenu(forward_backward_frame, popup_window.forward_backward_variable, *forward_backward_options)
+            forward_backward_option_menu.config(font=("Arial", font_size), width=int(font_size/2))
+            forward_backward_option_menu.grid(row=0, column=1)
 
             # slider for speed (1-30)
-            popup_window.speed_frame = tk.Frame(popup_window)
-            popup_window.speed_frame.pack(pady=(font_size,font_size))
+            speed_frame = tk.Frame(popup_window)
+            speed_frame.pack(pady=(font_size,font_size))
 
-            popup_window.speed_label = tk.Label(popup_window.speed_frame, text="Speed:", font=("Arial", font_size))
-            popup_window.speed_label.grid(row=0, column=0, padx=(10, 20))
+            speed_label = tk.Label(speed_frame, text="Speed:", font=("Arial", font_size))
+            speed_label.grid(row=0, column=0, padx=(10, 20))
 
-            popup_window.speed_slider = tk.Scale(popup_window.speed_frame, from_=1, to=30, orient=tk.HORIZONTAL, length=popup_width/2, font=("Arial", font_size))
+            popup_window.speed_slider = tk.Scale(speed_frame, from_=1, to=30, orient=tk.HORIZONTAL, length=popup_width/2, font=("Arial", font_size))
             popup_window.speed_slider.grid(row=0, column=1)
 
             # slider for distance (0-5 meters)
-            popup_window.distance_frame = tk.Frame(popup_window)
-            popup_window.distance_frame.pack(pady=(font_size,font_size))
+            distance_frame = tk.Frame(popup_window)
+            distance_frame.pack(pady=(font_size,font_size))
 
-            popup_window.distance_label = tk.Label(popup_window.distance_frame, text="Distance (m):", font=("Arial", font_size))
-            popup_window.distance_label.grid(row=0, column=0, padx=(10, 20))
+            distance_label = tk.Label(distance_frame, text="Distance (m):", font=("Arial", font_size))
+            distance_label.grid(row=0, column=0, padx=(10, 20))
 
-            popup_window.distance_slider = tk.Scale(popup_window.distance_frame, from_=0, to=5, orient=tk.HORIZONTAL, length=popup_width/2, resolution=0.1, font=("Arial", font_size))
+            popup_window.distance_slider = tk.Scale(distance_frame, from_=0, to=5, orient=tk.HORIZONTAL, length=popup_width/2, resolution=0.1, font=("Arial", font_size))
             popup_window.distance_slider.grid(row=0, column=1)
 
         elif icon_name == "Turn":
@@ -262,8 +261,6 @@ class RobotProgrammingGUI:
         # Apply button
         apply_button = tk.Button(popup_window, text="✅", command=lambda: self.apply_adjustments(icon_name, popup_window), font=("Arial", font_size), padx=10, pady=5, borderwidth=2, relief=tk.RAISED, background="lightgray")
         apply_button.pack(pady=(font_size,font_size))
-        #popup_window.grab_set()
-        popup_window.focus_set()
 
     def apply_adjustments(self, icon_name, popup_window):
         string = ""
