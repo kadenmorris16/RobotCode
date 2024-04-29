@@ -95,7 +95,7 @@ class RobotProgrammingGUI:
         x_coordinate = (screen_width - popup_width) / 2
         y_coordinate = (screen_height - popup_height) / 2
 
-        popup_window = tk.Toplevel()
+        popup_window = tk.Toplevel(self.root)
         popup_window.title("Adjust " + icon_name + " Details")
         popup_window.geometry("%dx%d+%d+%d" % (popup_width, popup_height, x_coordinate, y_coordinate))
 
