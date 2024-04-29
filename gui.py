@@ -337,6 +337,7 @@ class RobotProgrammingGUI:
 def main():
     root = tk.Tk()
     root.attributes('-fullscreen', True)
+    root.attributes("-zoomed", True)
     canvas = tk.Canvas(root, bg="#dcdcdc")
     canvas.pack(fill=tk.BOTH, expand=True)
     app = RobotProgrammingGUI(root, canvas)
