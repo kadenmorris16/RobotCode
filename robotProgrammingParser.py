@@ -23,7 +23,7 @@ class RobotProgrammingParser():
         action_num = 1
         for action_str in self.actions:
             
-            self.display.printText("Step " + action_num + "/" + len(self.actions), 50)
+            self.display.printText("Action " + action_num + "/" + len(self.actions), 50)
             time.sleep(1)
             self.display.drawEyes(5)
 
