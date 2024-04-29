@@ -1,11 +1,11 @@
 import tkinter as tk
 import random
 import threading
+from gui import RobotProgrammingGUI
 
 class Screen:
     def __init__(self, root):
         self.root = root
-        self.root.attributes('-zoomed', True)
         self.root.attributes('-fullscreen', True)
         self.canvas = tk.Canvas(self.root, bg="#dcdcdc")
         self.canvas.pack(fill=tk.BOTH, expand=True)
@@ -159,8 +159,10 @@ class Screen:
 
         self.canvas.create_text(screen_width//2, self.canvas.winfo_screenheight()//2, text=string, font=("Helvetica", fontSize), fill="black")
 
+    #  ---------- GUI CODE -----------
     def gui(self):
         self.clear()
+        gui = RobotProgrammingGUI(self.root, self.canvas)
 
 def run():
     root = tk.Tk()

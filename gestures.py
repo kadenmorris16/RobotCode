@@ -170,6 +170,23 @@ class Gesture:
         Thread(target=self.smoothMove, args=(15, 1480 * 4,)).start() # l wrist (+ = rotate left)
         Thread(target=self.smoothMove, args=(16, 1630 * 4,)).start() # l gripper (+ = close)
 
+    def wave(self):
+        self.start()
+        for i in range(3):
+            Thread(target=self.smoothMove, args=(5, 1770 * 4,)).start() # r shoulder (+ = up)
+            Thread(target=self.smoothMove, args=(6, 992 * 4,)).start() # r bicep (+ = out)
+            Thread(target=self.smoothMove, args=(7, 1220 * 4,)).start() # r elbow (+ = up)
+            Thread(target=self.smoothMove, args=(8, 1425 * 4,)).start() # r forearm (+ = up)
+            Thread(target=self.smoothMove, args=(9, 1215 * 4,)).start() # r wrist (+ = rotate left)
+            Thread(target=self.smoothMove, args=(10, 1170 * 4,)).start() # r gripper (+ = close)
+            time.sleep(0.3)
+            Thread(target=self.smoothMove, args=(5, 1950 * 4,)).start() # r shoulder (+ = up)
+            Thread(target=self.smoothMove, args=(6, 2000 * 4,)).start() # r bicep (+ = out)
+            Thread(target=self.smoothMove, args=(7, 1260 * 4,)).start() # r elbow (+ = up)
+            Thread(target=self.smoothMove, args=(8, 1415 * 4,)).start() # r forearm (+ = up)
+            Thread(target=self.smoothMove, args=(9, 992 * 4,)).start() # r wrist (+ = rotate left)
+            Thread(target=self.smoothMove, args=(10, 2000 * 4,)).start() # r gripper (+ = close)
+
     def headUp(self):
         self.smoothMove(4, 1750 * 4) # tilt head (+ = up)
         time.sleep(0.5)
