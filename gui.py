@@ -78,7 +78,7 @@ class RobotProgrammingGUI:
             total_width = self.num_slots * self.slot_size
             initial_x = (canvas_width - total_width) // 2
             slot_index = self.timeline_slots.index(None)
-            x, y = initial_x + slot_index * self.slot_size, canvas_height // 2
+            x, y = initial_x + slot_index * self.slot_size, canvas_height // 2 - self.slot_size // 2
             self.timeline_slots[slot_index] = icon_name
             self.canvas.create_text(x + self.slot_size/2, y + self.slot_size/2, text=self.icons[icon_name], font=("Arial", int(self.slot_size // 2)))
         else:
@@ -98,7 +98,8 @@ class RobotProgrammingGUI:
         popup_window = tk.Toplevel(self.root)
         popup_window.title("Adjust " + icon_name + " Details")
         popup_window.geometry("%dx%d+%d+%d" % (popup_width, popup_height, x_coordinate, y_coordinate))
-
+        popup_window.focus_set()
+        
         font_size = int(popup_width // 30)
 
         if icon_name == "Drive":
