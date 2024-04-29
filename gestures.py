@@ -266,7 +266,7 @@ def run(tango):
     g = Gesture(tango)
     g.start()
     time.sleep(1)
-    g.infiniteRandomGestures()
+    g.wave()
 
 
 if __name__ == "__main__":
