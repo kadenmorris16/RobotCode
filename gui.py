@@ -313,6 +313,7 @@ class RobotProgrammingGUI:
         self.actions.append(string)
 
         popup_window.destroy()
+        popup_window.grab_release()
 
     def play_timeline(self):
         RobotProgrammingParser(self.actions)
