@@ -1,7 +1,6 @@
 import tkinter as tk
 import random
 import threading
-from gui import RobotProgrammingGUI
 
 class Screen:
     def __init__(self, root):
@@ -162,10 +161,6 @@ class Screen:
 
         self.canvas.create_text(screen_width//2, self.canvas.winfo_screenheight()//2, text=string, font=("Helvetica", fontSize), fill="black")
 
-    def gui(self):
-        self.clear()
-        gui = RobotProgrammingGUI(self.root, self.canvas)
-
 def run():
     root = tk.Tk()
     display = Screen(root)
@@ -194,8 +189,6 @@ def run():
             display.drawEyes(4)
         elif event.char == '9':
             display.drawEyes(5)
-        elif event.char == '0':
-            display.gui()
 
     root.bind('<KeyPress>', on_key_press)
 

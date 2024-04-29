@@ -62,7 +62,7 @@ class RobotProgrammingGUI:
 
         # Trash button
         trash_button = tk.Label(self.root, text="🗑️", font=("Arial", int(self.slot_size // 2)), bg='lightgray', bd=2, relief=tk.RAISED)
-        trash_button.bind("<ButtonPress-1>", lambda event: self.clear_timeline())
+        trash_button.bind("<ButtonPress-1>", lambda event: self.restart())
         trash_button.place(relx=0.4, rely=0.8, anchor=tk.CENTER)
 
     def on_icon_click(self, event):
@@ -315,14 +315,21 @@ class RobotProgrammingGUI:
         popup_window.destroy()
 
     def play_timeline(self):
-        parser = RobotProgrammingParser(self.actions)
+        RobotProgrammingParser(self.actions)
         print("Parsing Actions")
+        self.restart()
 
-    def clear_timeline(self):
+    def restart(self):
         self.timeline_slots = [None] * self.num_slots
         self.canvas.delete("all")
         self.actions.clear()
+        for widget in self.root.winfo_children():
+            if isinstance(widget, tk.Label):
+                widget.destroy()
+
         self.create_timeline_slots()
+        self.create_buttons()
+        self.create_icons()
 
 
 

@@ -47,7 +47,7 @@ class RobotProgrammingParser():
 
             action_num += 1
 
-        self.display.gui()
+        self.display.clear()
 
     def completeDrive(self, data): # data: 0=direction, 1=speed, 2=distance
         self.tango.setSpeed(0, int(data[1]))
