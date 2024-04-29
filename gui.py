@@ -262,6 +262,7 @@ class RobotProgrammingGUI:
         apply_button = tk.Button(popup_window, text="✅", command=lambda: self.apply_adjustments(icon_name, popup_window), font=("Arial", font_size), padx=10, pady=5, borderwidth=2, relief=tk.RAISED, background="lightgray")
         apply_button.pack(pady=(font_size,font_size))
         #popup_window.grab_set()
+        popup_window.focus_set()
 
     def apply_adjustments(self, icon_name, popup_window):
         string = ""
