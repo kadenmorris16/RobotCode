@@ -97,7 +97,8 @@ class RobotProgrammingGUI:
 
         popup_window = tk.Toplevel(self.root)
         popup_window.title("Adjust " + icon_name + " Details")
-        popup_window.geometry("%dx%d+%d+%d" % (popup_width, popup_height, x_coordinate, y_coordinate))
+        popup_window.attributes('-fullscreen', True)
+        #popup_window.geometry("%dx%d+%d+%d" % (popup_width, popup_height, x_coordinate, y_coordinate))
 
         font_size = int(popup_width // 30)
 
