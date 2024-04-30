@@ -126,7 +126,7 @@ class RobotProgrammingGUI:
             speed_label = tk.Label(speed_frame, text="Speed:", font=("Arial", font_size))
             speed_label.grid(row=0, column=0, padx=(10, 20))
 
-            popup_window.speed_slider = tk.Scale(speed_frame, from_=1, to=30, orient=tk.HORIZONTAL, length=popup_width/2, font=("Arial", font_size))
+            popup_window.speed_slider = tk.Scale(speed_frame, from_=5, to=60, orient=tk.HORIZONTAL, length=popup_width/2, font=("Arial", font_size))
             popup_window.speed_slider.grid(row=0, column=1)
 
             # slider for distance (0-5 meters)
@@ -136,7 +136,7 @@ class RobotProgrammingGUI:
             distance_label = tk.Label(distance_frame, text="Time (s):", font=("Arial", font_size))
             distance_label.grid(row=0, column=0, padx=(10, 20))
 
-            popup_window.distance_slider = tk.Scale(distance_frame, from_=0, to=5, orient=tk.HORIZONTAL, length=popup_width/2, resolution=0.1, font=("Arial", font_size))
+            popup_window.distance_slider = tk.Scale(distance_frame, from_=0.5, to=10, orient=tk.HORIZONTAL, length=popup_width/2, resolution=0.1, font=("Arial", font_size))
             popup_window.distance_slider.grid(row=0, column=1)
 
         elif icon_name == "Turn":
@@ -161,7 +161,7 @@ class RobotProgrammingGUI:
             time_label = tk.Label(time_frame, text="Time (s):", font=("Arial", font_size))
             time_label.grid(row=0, column=0, padx=(10, 20))
 
-            popup_window.time_slider = tk.Scale(time_frame, from_=0, to=5, orient=tk.HORIZONTAL, length=popup_width/2, resolution=0.1, font=("Arial", font_size))
+            popup_window.time_slider = tk.Scale(time_frame, from_=0.5, to=10, orient=tk.HORIZONTAL, length=popup_width/2, resolution=0.1, font=("Arial", font_size))
             popup_window.time_slider.grid(row=0, column=1)
 
         elif icon_name == "Head Tilt":

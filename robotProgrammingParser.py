@@ -17,6 +17,7 @@ class RobotProgrammingParser():
         self.root = tk.Tk()
         self.root.attributes('-fullscreen', True)
         self.display = Screen(self.root)
+        self.root.mainloop()
 
         self.gesture.start()
         self.run()
