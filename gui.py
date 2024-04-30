@@ -1,5 +1,4 @@
 import tkinter as tk
-import subprocess
 from robotProgrammingParser import RobotProgrammingParser
 
 class RobotProgrammingGUI:
