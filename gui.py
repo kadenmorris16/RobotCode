@@ -316,12 +316,16 @@ class RobotProgrammingGUI:
         self.actions.append(string)
         print(string)
 
+        subprocess.run(['pkill', 'matchbox-keyboard'])
         popup_window.destroy()
 
-    def open_keyboard(self, event):
+    def open_keyboard(self):
         # Open the system's default on-screen keyboard
+        screen_width = self.canvas.winfo_screenwidth()
         subprocess.Popen(['matchbox-keyboard'])
-        
+        subprocess.Popen(['xdotool', 'search', '--sync', '--onlyvisible', '--class', 'matchbox-keyboard', 'windowsize', '--usehints', str(screen_width), '100'])
+
+
     def play_timeline(self):
         #RobotProgrammingParser(self.actions)
         print("Parsing Actions")
