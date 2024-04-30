@@ -5,7 +5,12 @@ import threading
 class Screen:
     def __init__(self, root):
         self.root = root
-        self.root.attributes('-fullscreen', True)
+        width = self.root.winfo_screenwidth()
+        height = self.root.winfo_screenheight()
+        x_coordinate = width // 2
+        y_coordinate = height // 2
+        self.root.geometry("%dx%d+%d+%d" % (width, height, x_coordinate, y_coordinate))
+        
         self.frame = tk.Frame(self.root)
         self.frame.pack(fill=tk.BOTH, expand=True)
         self.canvas = tk.Canvas(self.frame, bg="#dcdcdc")
