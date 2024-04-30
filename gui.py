@@ -1,5 +1,5 @@
 import tkinter as tk
-import pyautogui
+import subprocess
 #from robotProgrammingParser import RobotProgrammingParser
 
 class RobotProgrammingGUI:
@@ -239,13 +239,9 @@ class RobotProgrammingGUI:
             custom_entry_label = tk.Label(popup_window, text="Custom message:", font=("Arial", font_size))
             custom_entry_label.pack()
 
-            def open_keyboard(event):
-                popup_window.custom_entry.focus()
-                pyautogui.click()
-
             popup_window.custom_entry = tk.Entry(popup_window, font=("Arial", int(font_size/2)), width=int(font_size))
             popup_window.custom_entry.pack()
-            popup_window.custom_entry.bind("<Button-1>", open_keyboard)
+            popup_window.custom_entry.bind("<Button-1>", self.open_keyboard)
 
         else: # Gesture
             # Select one of the following:
@@ -321,6 +317,10 @@ class RobotProgrammingGUI:
         print(string)
 
         popup_window.destroy()
+
+    def open_keyboard(self, event):
+        # Open the system's default on-screen keyboard
+        subprocess.run(['osk'])
 
     def play_timeline(self):
         #RobotProgrammingParser(self.actions)
