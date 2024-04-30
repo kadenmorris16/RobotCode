@@ -14,10 +14,10 @@ class RobotProgrammingParser():
         self.listen = sr.Recognizer()
         self.tts = TTS()
         self.gesture = Gesture(self.tango)
-        self.root = tk.Tk()
-        self.root.attributes('-fullscreen', True)
-        self.display = Screen(self.root)
-        self.root.mainloop()
+        # self.root = tk.Tk()
+        # self.root.attributes('-fullscreen', True)
+        # self.display = Screen(self.root)
+        # self.root.mainloop()
 
         self.gesture.start()
         self.run()
@@ -26,7 +26,7 @@ class RobotProgrammingParser():
         action_num = 1
         for action_str in self.actions:
             
-            self.display.drawEyes(5)
+            #self.display.drawEyes(5)
             #self.display.printText("Action " + str(action_num) + "/" + str(len(self.actions)), 80)
             time.sleep(1)
 
@@ -53,7 +53,7 @@ class RobotProgrammingParser():
         self.display.clear()
 
     def completeDrive(self, data): # data: 0=direction, 1=speed, 2=time
-        self.display.printText("Driving " + data[0] + " at speed " + data[1] + " for " + data[2] + "seconds.", 50)
+        #self.display.printText("Driving " + data[0] + " at speed " + data[1] + " for " + data[2] + "seconds.", 50)
         self.tango.setSpeed(0, int(data[1]))
         #t = abs(30 - float(data[1])) * float(data[2]) / 5
         if(data[0] == "Forward"):
@@ -64,7 +64,7 @@ class RobotProgrammingParser():
         self.tango.reset(0)
 
     def completeTurn(self, data): # data: 0=direction, 1=time
-        self.display.printText("Driving " + data[0] + " for " + data[2] + "seconds.", 50)
+        #self.display.printText("Driving " + data[0] + " for " + data[2] + "seconds.", 50)
         self.tango.setSpeed(1, 20)
         if(data[0] == "Right"):
             self.tango.setServo(1, 5000)
@@ -74,28 +74,28 @@ class RobotProgrammingParser():
         self.tango.reset(1)
 
     def completeHeadTilt(self, direction):
-        self.display.printText("Looking " + direction + ".", 50)
+        #self.display.printText("Looking " + direction + ".", 50)
         if(direction == "Up"):
             self.gesture.headUp()
         else:
             self.gesture.headDown()
 
     def completeHeadTurn(self, direction):
-        self.display.printText("Looking " + direction + ".", 50)
+        #self.display.printText("Looking " + direction + ".", 50)
         if(direction == "Left"):
             self.gesture.headLeft()
         else:
             self.gesture.headRight()
 
     def completeWaistTurn(self, direction):
-        self.display.printText("Moving waist " + direction + ".", 50)
+        #self.display.printText("Moving waist " + direction + ".", 50)
         if(direction == "Left"):
             self.gesture.torsoLeft()
         else:
             self.gesture.torsoRight()
 
     def completeListen(self):
-        self.display.printText("Listening...", 50)
+        #self.display.printText("Listening...", 50)
         while True:
             with sr.Microphone() as source:
                 self.listen.adjust_for_ambient_noise(source)
@@ -114,24 +114,24 @@ class RobotProgrammingParser():
                     print("I don't understand...")
 
     def completeTalk(self, string):
-        self.display.printText(string, 50)
+        #self.display.printText(string, 50)
         self.tts.speak(string)
 
     def completeGesture(self, gesture):
         if gesture == "pointRight":
-            self.display.printText("Pointing right.", 50)
+            #self.display.printText("Pointing right.", 50)
             self.gesture.pointRightSingle()
             time.sleep(1)
         elif  gesture ==  "pointLeft":
-            self.display.printText("Pointing left.", 50)
+            #self.display.printText("Pointing left.", 50)
             self.gesture.pointLeftSingle()
             time.sleep(1)
         elif  gesture == "handsUp":
-            self.display.printText("Lifting arms.", 50)
+            #self.display.printText("Lifting arms.", 50)
             self.gesture.armsUp()
             time.sleep(1)
         else:
-            self.display.printText("Waving.", 50)
+            #self.display.printText("Waving.", 50)
             self.gesture.wave()
 
         self.gesture.start()
