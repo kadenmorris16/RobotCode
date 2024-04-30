@@ -107,7 +107,7 @@ class RobotProgrammingGUI:
         if icon_name == "Drive":
             # forward/backward option
             forward_backward_frame = tk.Frame(popup_window)
-            forward_backward_frame.pack(pady=(font_size,font_size))
+            forward_backward_frame.pack(pady=(font_size/2,font_size/2))
 
             forward_backward_label = tk.Label(forward_backward_frame, text="Direction:", font=("Arial", font_size))
             forward_backward_label.grid(row=0, column=0, padx=(10, 20))
@@ -121,7 +121,7 @@ class RobotProgrammingGUI:
 
             # slider for speed (1-30)
             speed_frame = tk.Frame(popup_window)
-            speed_frame.pack(pady=(font_size,font_size))
+            speed_frame.pack(pady=(font_size/2,font_size/2))
 
             speed_label = tk.Label(speed_frame, text="Speed:", font=("Arial", font_size))
             speed_label.grid(row=0, column=0, padx=(10, 20))
@@ -131,7 +131,7 @@ class RobotProgrammingGUI:
 
             # slider for distance (0-5 meters)
             distance_frame = tk.Frame(popup_window)
-            distance_frame.pack(pady=(font_size,font_size))
+            distance_frame.pack(pady=(font_size/2,font_size/2))
 
             distance_label = tk.Label(distance_frame, text="Distance (m):", font=("Arial", font_size))
             distance_label.grid(row=0, column=0, padx=(10, 20))
@@ -142,7 +142,7 @@ class RobotProgrammingGUI:
         elif icon_name == "Turn":
             # left/right option
             left_right_frame = tk.Frame(popup_window)
-            left_right_frame.pack(pady=(font_size, font_size))
+            left_right_frame.pack(pady=(font_size/2, font_size/2))
 
             left_right_label = tk.Label(left_right_frame, text="Direction:", font=("Arial", font_size))
             left_right_label.grid(row=0, column=0, padx=(10, 20))
@@ -156,7 +156,7 @@ class RobotProgrammingGUI:
 
             # slider for time (0-5 seconds)
             time_frame = tk.Frame(popup_window)
-            time_frame.pack(pady=(font_size, font_size))
+            time_frame.pack(pady=(font_size/2, font_size/2))
 
             time_label = tk.Label(time_frame, text="Time (s):", font=("Arial", font_size))
             time_label.grid(row=0, column=0, padx=(10, 20))
@@ -167,7 +167,7 @@ class RobotProgrammingGUI:
         elif icon_name == "Head Tilt":
             # up/down option
             up_down_frame = tk.Frame(popup_window)
-            up_down_frame.pack(pady=(font_size, font_size))
+            up_down_frame.pack(pady=(font_size/2, font_size/2))
 
             up_down_label = tk.Label(up_down_frame, text="Direction:", font=("Arial", font_size))
             up_down_label.grid(row=0, column=0, padx=(10, 20))
@@ -182,7 +182,7 @@ class RobotProgrammingGUI:
         elif icon_name == "Head Turn":
             # left/right option
             left_right_frame = tk.Frame(popup_window)
-            left_right_frame.pack(pady=(font_size, font_size))
+            left_right_frame.pack(pady=(font_size/2, font_size/2))
 
             left_right_label = tk.Label(left_right_frame, text="Direction:", font=("Arial", font_size))
             left_right_label.grid(row=0, column=0, padx=(10, 20))
@@ -197,7 +197,7 @@ class RobotProgrammingGUI:
         elif icon_name == "Waist Turn":
             # left/right option
             left_right_frame = tk.Frame(popup_window)
-            left_right_frame.pack(pady=(font_size, font_size))
+            left_right_frame.pack(pady=(font_size/2, font_size/2))
 
             left_right_label = tk.Label(left_right_frame, text="Direction:", font=("Arial", font_size))
             left_right_label.grid(row=0, column=0, padx=(10, 20))
@@ -224,7 +224,7 @@ class RobotProgrammingGUI:
             #   "Welcome to Montana State University"
             #   Custom entry field (keyboard pops up on the touchscreen on click)
             talk_frame = tk.Frame(popup_window)
-            talk_frame.pack(pady=(font_size, font_size))
+            talk_frame.pack(pady=(font_size/2, font_size/2))
 
             talk_label = tk.Label(talk_frame, text="Message:", font=("Arial", font_size))
             talk_label.grid(row=0, column=0, columnspan=2, padx=(10, 20), sticky="nsew")  # Add columnspan and sticky parameter for centering
@@ -254,7 +254,7 @@ class RobotProgrammingGUI:
             #   hands up
             #   wave
             gesture_frame = tk.Frame(popup_window)
-            gesture_frame.pack(pady=(font_size, font_size))
+            gesture_frame.pack(pady=(font_size/2, font_size/2))
 
             gesture_label = tk.Label(gesture_frame, text="Gesture:", font=("Arial", font_size))
             gesture_label.grid(row=0, column=0, padx=(10, 20), sticky="w")
