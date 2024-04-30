@@ -114,6 +114,9 @@ class RobotProgrammingGUI:
             popup_window.forward_backward_variable.set(forward_backward_options[0])
             forward_backward_combobox = ttk.Combobox(forward_backward_frame, textvariable=popup_window.forward_backward_variable, values=forward_backward_options, font=("Arial", font_size))
             forward_backward_combobox.grid(row=0, column=1, padx=10, pady=5)
+            forward_backward_combobox.config(style='Custom.TCombobox')
+            style = ttk.Style()
+            style.configure('Custom.TCombobox', font=('Arial', font_size))
 
             # slider for speed (1-30)
             speed_frame = tk.Frame(popup_window)
