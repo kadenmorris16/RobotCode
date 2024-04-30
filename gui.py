@@ -322,7 +322,7 @@ class RobotProgrammingGUI:
         popup_window.destroy()
 
     def play_timeline(self):
-        RobotProgrammingParser(self.actions)
+        RobotProgrammingParser(self.actions, self.root)
         print("Parsing Actions")
         self.restart()
 

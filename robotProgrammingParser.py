@@ -8,16 +8,13 @@ from tango import Tango
 from screen import Screen
 
 class RobotProgrammingParser():
-    def __init__(self, actions):
+    def __init__(self, actions, root):
         self.actions = actions
         self.tango = Tango()
         self.listen = sr.Recognizer()
         self.tts = TTS()
         self.gesture = Gesture(self.tango)
-        # self.root = tk.Tk()
-        # self.root.attributes('-fullscreen', True)
-        # self.display = Screen(self.root)
-        # self.root.mainloop()
+        self.display = Screen(root)
 
         self.gesture.start()
         self.run()
