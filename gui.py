@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk
+import pyautogui
 #from robotProgrammingParser import RobotProgrammingParser
 
 class RobotProgrammingGUI:
@@ -112,11 +112,9 @@ class RobotProgrammingGUI:
             forward_backward_options = ["Forward", "Backward"]
             popup_window.forward_backward_variable = tk.StringVar()
             popup_window.forward_backward_variable.set(forward_backward_options[0])
-            forward_backward_combobox = ttk.Combobox(forward_backward_frame, textvariable=popup_window.forward_backward_variable, values=forward_backward_options, font=("Arial", font_size))
-            forward_backward_combobox.grid(row=0, column=1, padx=10, pady=5)
-            forward_backward_combobox.config(style='Custom.TCombobox')
-            style = ttk.Style()
-            style.configure('Custom.TCombobox', font=('Arial', font_size))
+            for i, option in enumerate(forward_backward_options):
+                button = tk.Radiobutton(forward_backward_frame, text=option, variable=popup_window.forward_backward_variable, value=option, font=("Arial", font_size), indicatoron=False)
+                button.grid(row=i+1, column=0, padx=10, pady=5, sticky="w")
 
             # slider for speed (1-30)
             speed_frame = tk.Frame(popup_window)
@@ -149,9 +147,9 @@ class RobotProgrammingGUI:
             left_right_options = ["Left", "Right"]
             popup_window.left_right_variable = tk.StringVar()
             popup_window.left_right_variable.set(left_right_options[0])
-            left_right_option_menu = tk.OptionMenu(left_right_frame, popup_window.left_right_variable, *left_right_options)
-            left_right_option_menu.config(font=("Arial", font_size), width=int(font_size/2))
-            left_right_option_menu.grid(row=0, column=1)
+            for i, option in enumerate(left_right_options):
+                button = tk.Radiobutton(left_right_frame, text=option, variable=popup_window.left_right_variable, value=option, font=("Arial", font_size), indicatoron=False)
+                button.grid(row=i+1, column=0, padx=10, pady=5, sticky="w")
 
             # slider for time (0-5 seconds)
             time_frame = tk.Frame(popup_window)
@@ -174,9 +172,9 @@ class RobotProgrammingGUI:
             up_down_options = ["Up", "Down"]
             popup_window.up_down_variable = tk.StringVar()
             popup_window.up_down_variable.set(up_down_options[0])
-            up_down_option_menu = tk.OptionMenu(up_down_frame, popup_window.up_down_variable, *up_down_options)
-            up_down_option_menu.config(font=("Arial", font_size), width=int(font_size/2))
-            up_down_option_menu.grid(row=0, column=1)
+            for i, option in enumerate(up_down_options):
+                button = tk.Radiobutton(up_down_frame, text=option, variable=popup_window.up_down_variable, value=option, font=("Arial", font_size), indicatoron=False)
+                button.grid(row=i+1, column=0, padx=10, pady=5, sticky="w")
 
         elif icon_name == "Head Turn":
             # left/right option
@@ -189,9 +187,9 @@ class RobotProgrammingGUI:
             left_right_options = ["Left", "Right"]
             popup_window.left_right_variable = tk.StringVar()
             popup_window.left_right_variable.set(left_right_options[0])
-            left_right_option_menu = tk.OptionMenu(left_right_frame, popup_window.left_right_variable, *left_right_options)
-            left_right_option_menu.config(font=("Arial", font_size), width=int(font_size/2))
-            left_right_option_menu.grid(row=0, column=1)
+            for i, option in enumerate(left_right_options):
+                button = tk.Radiobutton(left_right_frame, text=option, variable=popup_window.left_right_variable, value=option, font=("Arial", font_size), indicatoron=False)
+                button.grid(row=i+1, column=0, padx=10, pady=5, sticky="w")
 
         elif icon_name == "Waist Turn":
             # left/right option
@@ -204,9 +202,9 @@ class RobotProgrammingGUI:
             left_right_options = ["Left", "Right"]
             popup_window.left_right_variable = tk.StringVar()
             popup_window.left_right_variable.set(left_right_options[0])
-            left_right_option_menu = tk.OptionMenu(left_right_frame, popup_window.left_right_variable, *left_right_options)
-            left_right_option_menu.config(font=("Arial", font_size), width=int(font_size/2))
-            left_right_option_menu.grid(row=0, column=1)
+            for i, option in enumerate(left_right_options):
+                button = tk.Radiobutton(left_right_frame, text=option, variable=popup_window.left_right_variable, value=option, font=("Arial", font_size), indicatoron=False)
+                button.grid(row=i+1, column=0, padx=10, pady=5, sticky="w")
 
         elif icon_name == "Listen":
             # display text that says "I will listen, then repeat what was said"
@@ -231,15 +229,20 @@ class RobotProgrammingGUI:
             talk_options = ["Hi, I am Tango the Robot.", "Get out of my way!", "Welcome to Montana State University", "Somebody charge me!"]
             popup_window.talk_variable = tk.StringVar()
             popup_window.talk_variable.set(talk_options[0])
-            talk_option_menu = tk.OptionMenu(talk_frame, popup_window.talk_variable, *talk_options)
-            talk_option_menu.config(font=("Arial", int(font_size/2)), width=int(font_size))
-            talk_option_menu.grid(row=1, column=0, columnspan=2, pady=(5, 0))
+            for i, option in enumerate(talk_options):
+                button = tk.Radiobutton(talk_frame, text=option, variable=popup_window.talk_variable, value=option, font=("Arial", font_size), indicatoron=False)
+                button.grid(row=i+1, column=0, padx=10, pady=5, sticky="w")
 
             custom_entry_label = tk.Label(popup_window, text="Custom message:", font=("Arial", font_size))
             custom_entry_label.pack()
 
+            def open_keyboard(event):
+                popup_window.custom_entry.focus()
+                pyautogui.click()
+
             popup_window.custom_entry = tk.Entry(popup_window, font=("Arial", int(font_size/2)), width=int(font_size))
             popup_window.custom_entry.pack()
+            popup_window.custom_entry.bind("<Button-1>", open_keyboard)
 
         else: # Gesture
             # Select one of the following:
@@ -256,9 +259,9 @@ class RobotProgrammingGUI:
             gesture_options = ["Point Right", "Point Left", "Hands Up", "Wave"]
             popup_window.gesture_variable = tk.StringVar()
             popup_window.gesture_variable.set(gesture_options[0])
-            gesture_option_menu = tk.OptionMenu(gesture_frame, popup_window.gesture_variable, *gesture_options)
-            gesture_option_menu.config(font=("Arial", font_size), width=int(font_size/2))
-            gesture_option_menu.grid(row=0, column=1)
+            for i, option in enumerate(gesture_options):
+                button = tk.Radiobutton(gesture_frame, text=option, variable=popup_window.gesture_variable, value=option, font=("Arial", font_size), indicatoron=False)
+                button.grid(row=i+1, column=0, padx=10, pady=5, sticky="w")
 
         # Apply button
         apply_button = tk.Button(popup_window, text="☑️", command=lambda: self.apply_adjustments(icon_name, popup_window), font=("Arial", font_size), padx=10, pady=5, borderwidth=2, relief=tk.RAISED, background="lightgray")
