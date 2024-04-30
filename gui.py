@@ -133,7 +133,7 @@ class RobotProgrammingGUI:
             distance_frame = tk.Frame(popup_window)
             distance_frame.pack(pady=(font_size/2,font_size/2))
 
-            distance_label = tk.Label(distance_frame, text="Distance (m):", font=("Arial", font_size))
+            distance_label = tk.Label(distance_frame, text="Time (s):", font=("Arial", font_size))
             distance_label.grid(row=0, column=0, padx=(10, 20))
 
             popup_window.distance_slider = tk.Scale(distance_frame, from_=0, to=5, orient=tk.HORIZONTAL, length=popup_width/2, resolution=0.1, font=("Arial", font_size))
