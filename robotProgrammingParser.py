@@ -1,4 +1,3 @@
-import tkinter as tk
 import time
 import speech_recognition as sr
 from speech import TTS
