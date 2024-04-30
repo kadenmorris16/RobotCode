@@ -210,12 +210,12 @@ class Gesture:
 
     def torsoLeft(self):
         self.smoothMove(2, 1900 * 4) # waist (+ = left)
-        time.sleep(0.5)
+        time.sleep(0.8)
         self.smoothMove(2, 1500 * 4) # waist (+ = left)
 
     def torsoRight(self):
         self.smoothMove(2, 1000 * 4) # waist (+ = left)
-        time.sleep(0.5)
+        time.sleep(0.8)
         self.smoothMove(2, 1500 * 4) # waist (+ = left)
 
     def smoothMove(self, port, finalPosition):
