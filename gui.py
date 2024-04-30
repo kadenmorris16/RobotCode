@@ -323,6 +323,7 @@ class RobotProgrammingGUI:
         parser = RobotProgrammingParser(self.actions, self.root)
         parser.run()
         print("Parsing Actions")
+        self.restart()
 
     def restart(self):
         self.timeline_slots = [None] * self.num_slots
