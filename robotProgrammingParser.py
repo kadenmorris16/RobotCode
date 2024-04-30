@@ -94,6 +94,7 @@ class RobotProgrammingParser():
 
                 try:
                     print("\nListening...")
+                    self.tts.speak("I'm Listening!")
                     audio = self.listen.listen(source)
                     text = self.listen.recognize_google(audio)
                     print("You said:", text)

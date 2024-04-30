@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 #from robotProgrammingParser import RobotProgrammingParser
 
 class RobotProgrammingGUI:
@@ -111,9 +112,8 @@ class RobotProgrammingGUI:
             forward_backward_options = ["Forward", "Backward"]
             popup_window.forward_backward_variable = tk.StringVar()
             popup_window.forward_backward_variable.set(forward_backward_options[0])
-            forward_backward_option_menu = tk.OptionMenu(forward_backward_frame, popup_window.forward_backward_variable, *forward_backward_options)
-            forward_backward_option_menu.config(font=("Arial", font_size), width=int(font_size/2))
-            forward_backward_option_menu.grid(row=0, column=1)
+            forward_backward_combobox = ttk.Combobox(forward_backward_frame, textvariable=popup_window.forward_backward_variable, values=forward_backward_options, font=("Arial", font_size))
+            forward_backward_combobox.grid(row=0, column=1, padx=10, pady=5)
 
             # slider for speed (1-30)
             speed_frame = tk.Frame(popup_window)
