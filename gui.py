@@ -1,6 +1,6 @@
 import tkinter as tk
 import subprocess
-#from robotProgrammingParser import RobotProgrammingParser
+from robotProgrammingParser import RobotProgrammingParser
 
 class RobotProgrammingGUI:
     def __init__(self, root, canvas):
@@ -241,7 +241,7 @@ class RobotProgrammingGUI:
 
             popup_window.custom_entry = tk.Entry(popup_window, font=("Arial", int(font_size/2)), width=int(font_size))
             popup_window.custom_entry.pack()
-            popup_window.custom_entry.bind("<Button-1>", self.open_keyboard)
+            #popup_window.custom_entry.bind("<Button-1>", self.open_keyboard)
 
         else: # Gesture
             # Select one of the following:
@@ -267,8 +267,7 @@ class RobotProgrammingGUI:
         apply_button.pack(pady=(font_size,font_size))
 
     def open_keyboard(self, event):
-        screen_width = self.canvas.winfo_screenwidth()
-        subprocess.Popen(['matchbox-keyboard', '-g', f"{screen_width}x100+0+0"])
+        subprocess.Popen(['matchbox-keyboard', '--fontptsize', self.slot_size])
 
     def apply_adjustments(self, icon_name, popup_window):
         string = ""
@@ -323,7 +322,7 @@ class RobotProgrammingGUI:
         popup_window.destroy()
 
     def play_timeline(self):
-        #RobotProgrammingParser(self.actions)
+        RobotProgrammingParser(self.actions)
         print("Parsing Actions")
         self.restart()
 
