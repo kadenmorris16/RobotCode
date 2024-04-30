@@ -13,6 +13,7 @@ class Screen:
         self.spiralId = None
         self.blinkId  = None
         self.nextBlinkId = None
+        self.clear()
 
         self.drawEyes(0)
     
