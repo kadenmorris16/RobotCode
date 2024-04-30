@@ -54,12 +54,10 @@ class RobotProgrammingParser():
 
     def completeDrive(self, data): # data: 0=direction, 1=speed, 2=time
         #self.display.printText("Driving " + data[0] + " at speed " + data[1] + " for " + data[2] + "seconds.", 50)
-        self.tango.setSpeed(0, int(data[1]))
-        #t = abs(30 - float(data[1])) * float(data[2]) / 5
         if(data[0] == "Forward"):
-            self.tango.setServo(0, 6000 - int(data[1])*80)
+            self.tango.setServo(0, 6000 - (int(data[1])+5)*200)
         else:
-            self.tango.setServo(0, 6000 + int(data[1])*80)
+            self.tango.setServo(0, 6000 + (int(data[1])+5)*200)
         time.sleep(float(data[2]))
         self.tango.reset(0)
 

@@ -126,7 +126,7 @@ class RobotProgrammingGUI:
             speed_label = tk.Label(speed_frame, text="Speed:", font=("Arial", font_size))
             speed_label.grid(row=0, column=0, padx=(10, 20))
 
-            popup_window.speed_slider = tk.Scale(speed_frame, from_=5, to=60, orient=tk.HORIZONTAL, length=popup_width/2, font=("Arial", font_size))
+            popup_window.speed_slider = tk.Scale(speed_frame, from_=1, to=10, orient=tk.HORIZONTAL, length=popup_width/2, font=("Arial", font_size))
             popup_window.speed_slider.grid(row=0, column=1)
 
             # slider for distance (0-5 meters)
