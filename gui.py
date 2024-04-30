@@ -62,12 +62,12 @@ class RobotProgrammingGUI:
         # Play button
         play_button = tk.Label(self.root, text="🟢", font=("Arial", int(self.slot_size // 2)), bg='lightgray', bd=2, relief=tk.RAISED)
         play_button.bind("<ButtonPress-1>", lambda event: self.play_timeline())
-        play_button.place(x = canvas_width*(3/4) - self.slot_size // 2, y = canvas_height*(3/4))
+        play_button.place(x = canvas_width*(3/5) - self.slot_size // 2, y = canvas_height*(3/4) - self.slot_size // 2)
 
         # Trash button
         trash_button = tk.Label(self.root, text="🗑️", font=("Arial", int(self.slot_size // 2)), bg='lightgray', bd=2, relief=tk.RAISED)
         trash_button.bind("<ButtonPress-1>", lambda event: self.restart())
-        trash_button.place(x = canvas_width*(1/4) - self.slot_size // 2, y = canvas_height*(3/4))
+        trash_button.place(x = canvas_width*(2/5) - self.slot_size // 2, y = canvas_height*(3/4) - self.slot_size // 2)
 
     def on_icon_click(self, event):
         icon_name = event.widget.name
