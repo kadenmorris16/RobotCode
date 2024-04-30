@@ -315,8 +315,7 @@ class RobotProgrammingGUI:
         
         self.actions.append(string)
         print(string)
-
-        subprocess.run(['pkill -f', 'matchbox-keyboard'])
+        
         popup_window.destroy()
 
     def open_keyboard(self, event):
