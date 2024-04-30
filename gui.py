@@ -56,15 +56,18 @@ class RobotProgrammingGUI:
             x += (self.slot_size // 2  + 50)
 
     def create_buttons(self):
+        canvas_width = self.canvas.winfo_screenwidth()
+        canvas_height = self.canvas.winfo_screenheight()
+
         # Play button
         play_button = tk.Label(self.root, text="🟢", font=("Arial", int(self.slot_size // 2)), bg='lightgray', bd=2, relief=tk.RAISED)
         play_button.bind("<ButtonPress-1>", lambda event: self.play_timeline())
-        play_button.place(relx=0.6, rely=0.8, anchor=tk.CENTER)
+        play_button.place(x = canvas_width*(3/4) - self.slot_size // 2, y = canvas_height*(3/4))
 
         # Trash button
         trash_button = tk.Label(self.root, text="🗑️", font=("Arial", int(self.slot_size // 2)), bg='lightgray', bd=2, relief=tk.RAISED)
         trash_button.bind("<ButtonPress-1>", lambda event: self.restart())
-        trash_button.place(relx=0.4, rely=0.8, anchor=tk.CENTER)
+        trash_button.place(x = canvas_width*(1/4) - self.slot_size // 2, y = canvas_height*(3/4))
 
     def on_icon_click(self, event):
         icon_name = event.widget.name
@@ -113,7 +116,7 @@ class RobotProgrammingGUI:
             popup_window.forward_backward_variable = tk.StringVar()
             popup_window.forward_backward_variable.set(forward_backward_options[0])
             for i, option in enumerate(forward_backward_options):
-                button = tk.Radiobutton(forward_backward_frame, text=option, variable=popup_window.forward_backward_variable, value=option, font=("Arial", font_size), indicatoron=False)
+                button = tk.Radiobutton(forward_backward_frame, text=option, variable=popup_window.forward_backward_variable, value=option, font=("Arial", int(font_size/2)), indicatoron=False)
                 button.grid(row=i+1, column=0, padx=10, pady=5, sticky="w")
 
             # slider for speed (1-30)
@@ -148,7 +151,7 @@ class RobotProgrammingGUI:
             popup_window.left_right_variable = tk.StringVar()
             popup_window.left_right_variable.set(left_right_options[0])
             for i, option in enumerate(left_right_options):
-                button = tk.Radiobutton(left_right_frame, text=option, variable=popup_window.left_right_variable, value=option, font=("Arial", font_size), indicatoron=False)
+                button = tk.Radiobutton(left_right_frame, text=option, variable=popup_window.left_right_variable, value=option, font=("Arial", int(font_size/2)), indicatoron=False)
                 button.grid(row=i+1, column=0, padx=10, pady=5, sticky="w")
 
             # slider for time (0-5 seconds)
@@ -173,7 +176,7 @@ class RobotProgrammingGUI:
             popup_window.up_down_variable = tk.StringVar()
             popup_window.up_down_variable.set(up_down_options[0])
             for i, option in enumerate(up_down_options):
-                button = tk.Radiobutton(up_down_frame, text=option, variable=popup_window.up_down_variable, value=option, font=("Arial", font_size), indicatoron=False)
+                button = tk.Radiobutton(up_down_frame, text=option, variable=popup_window.up_down_variable, value=option, font=("Arial", int(font_size/2)), indicatoron=False)
                 button.grid(row=i+1, column=0, padx=10, pady=5, sticky="w")
 
         elif icon_name == "Head Turn":
@@ -188,7 +191,7 @@ class RobotProgrammingGUI:
             popup_window.left_right_variable = tk.StringVar()
             popup_window.left_right_variable.set(left_right_options[0])
             for i, option in enumerate(left_right_options):
-                button = tk.Radiobutton(left_right_frame, text=option, variable=popup_window.left_right_variable, value=option, font=("Arial", font_size), indicatoron=False)
+                button = tk.Radiobutton(left_right_frame, text=option, variable=popup_window.left_right_variable, value=option, font=("Arial", int(font_size/2)), indicatoron=False)
                 button.grid(row=i+1, column=0, padx=10, pady=5, sticky="w")
 
         elif icon_name == "Waist Turn":
@@ -203,7 +206,7 @@ class RobotProgrammingGUI:
             popup_window.left_right_variable = tk.StringVar()
             popup_window.left_right_variable.set(left_right_options[0])
             for i, option in enumerate(left_right_options):
-                button = tk.Radiobutton(left_right_frame, text=option, variable=popup_window.left_right_variable, value=option, font=("Arial", font_size), indicatoron=False)
+                button = tk.Radiobutton(left_right_frame, text=option, variable=popup_window.left_right_variable, value=option, font=("Arial", int(font_size/2)), indicatoron=False)
                 button.grid(row=i+1, column=0, padx=10, pady=5, sticky="w")
 
         elif icon_name == "Listen":
@@ -230,7 +233,7 @@ class RobotProgrammingGUI:
             popup_window.talk_variable = tk.StringVar()
             popup_window.talk_variable.set(talk_options[0])
             for i, option in enumerate(talk_options):
-                button = tk.Radiobutton(talk_frame, text=option, variable=popup_window.talk_variable, value=option, font=("Arial", font_size), indicatoron=False)
+                button = tk.Radiobutton(talk_frame, text=option, variable=popup_window.talk_variable, value=option, font=("Arial", int(font_size/2)), indicatoron=False)
                 button.grid(row=i+1, column=0, padx=10, pady=5, sticky="w")
 
             custom_entry_label = tk.Label(popup_window, text="Custom message:", font=("Arial", font_size))
@@ -260,7 +263,7 @@ class RobotProgrammingGUI:
             popup_window.gesture_variable = tk.StringVar()
             popup_window.gesture_variable.set(gesture_options[0])
             for i, option in enumerate(gesture_options):
-                button = tk.Radiobutton(gesture_frame, text=option, variable=popup_window.gesture_variable, value=option, font=("Arial", font_size), indicatoron=False)
+                button = tk.Radiobutton(gesture_frame, text=option, variable=popup_window.gesture_variable, value=option, font=("Arial", int(font_size/2)), indicatoron=False)
                 button.grid(row=i+1, column=0, padx=10, pady=5, sticky="w")
 
         # Apply button
