@@ -11,6 +11,7 @@ class RobotProgrammingGUI:
         x_coordinate = width // 2
         y_coordinate = height // 2
         self.root.geometry("%dx%d+%d+%d" % (width, height, x_coordinate, y_coordinate))
+        root.attributes('-fullscreen', True)
 
         self.canvas = tk.Canvas(root, bg="#dcdcdc")
         self.canvas.pack(fill=tk.BOTH, expand=True)
@@ -245,13 +246,6 @@ class RobotProgrammingGUI:
                 button = tk.Radiobutton(talk_frame, text=option, variable=popup_window.talk_variable, value=option, font=("Arial", int(font_size/2)), indicatoron=False)
                 button.grid(row=i+1, column=0, padx=10, pady=5, sticky="w")
 
-            custom_entry_label = tk.Label(popup_window, text="Custom message:", font=("Arial", font_size))
-            custom_entry_label.pack()
-
-            popup_window.custom_entry = tk.Entry(popup_window, font=("Arial", int(font_size/2)), width=int(font_size))
-            popup_window.custom_entry.pack()
-            #popup_window.custom_entry.bind("<Button-1>", self.open_keyboard)
-
         else: # Gesture
             # Select one of the following:
             #   point right
@@ -274,9 +268,6 @@ class RobotProgrammingGUI:
         # Apply button
         apply_button = tk.Button(popup_window, text="☑️", command=lambda: self.apply_adjustments(icon_name, popup_window), font=("Arial", font_size), padx=10, pady=5, borderwidth=2, relief=tk.RAISED, background="lightgray")
         apply_button.pack(pady=(font_size,font_size))
-
-    def open_keyboard(self, event):
-        subprocess.Popen(['matchbox-keyboard'])
 
     def apply_adjustments(self, icon_name, popup_window):
         string = ""
@@ -309,10 +300,7 @@ class RobotProgrammingGUI:
 
         elif icon_name == "Talk":
             string += "Talk "
-            if(str(popup_window.custom_entry.get()).strip() == ""):
-                string += str(popup_window.talk_variable.get())
-            else:
-                string += str(popup_window.custom_entry.get())
+            string += str(popup_window.talk_variable.get())
 
         else: # Gesture
             string += "Gesture "

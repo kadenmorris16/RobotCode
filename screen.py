@@ -10,6 +10,7 @@ class Screen:
         x_coordinate = width // 2
         y_coordinate = height // 2
         self.root.geometry("%dx%d+%d+%d" % (width, height, x_coordinate, y_coordinate))
+        root.attributes('-fullscreen', True)
         
         self.frame = tk.Frame(self.root)
         self.frame.pack(fill=tk.BOTH, expand=True)
