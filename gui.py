@@ -266,6 +266,10 @@ class RobotProgrammingGUI:
         apply_button = tk.Button(popup_window, text="☑️", command=lambda: self.apply_adjustments(icon_name, popup_window), font=("Arial", font_size), padx=10, pady=5, borderwidth=2, relief=tk.RAISED, background="lightgray")
         apply_button.pack(pady=(font_size,font_size))
 
+    def open_keyboard(self, event):
+        screen_width = self.canvas.winfo_screenwidth()
+        subprocess.Popen(['matchbox-keyboard', '-g', f"{screen_width}x100+0+0"])
+
     def apply_adjustments(self, icon_name, popup_window):
         string = ""
 
@@ -317,11 +321,6 @@ class RobotProgrammingGUI:
         print(string)
 
         popup_window.destroy()
-
-    def open_keyboard(self, event):
-        screen_width = self.canvas.winfo_screenwidth()
-        subprocess.Popen(['matchbox-keyboard', f"{screen_width}x100"])
-
 
     def play_timeline(self):
         #RobotProgrammingParser(self.actions)
