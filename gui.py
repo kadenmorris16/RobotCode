@@ -319,7 +319,7 @@ class RobotProgrammingGUI:
         subprocess.run(['pkill', 'matchbox-keyboard'])
         popup_window.destroy()
 
-    def open_keyboard(self):
+    def open_keyboard(self, event):
         # Open the system's default on-screen keyboard
         screen_width = self.canvas.winfo_screenwidth()
         subprocess.Popen(['matchbox-keyboard'])
