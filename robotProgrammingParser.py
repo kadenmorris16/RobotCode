@@ -51,7 +51,7 @@ class RobotProgrammingParser():
 
     def completeDrive(self, data): # data: 0=direction, 1=speed, 2=distance
         self.tango.setSpeed(0, int(data[1]))
-        t = abs(30 - int(data[1])) * int(data[2]) / 5
+        t = abs(30 - float(data[1])) * float(data[2]) / 5
         if(data[0] == "Forward"):
             self.tango.setServo(0, 5000)
         else:
@@ -65,7 +65,7 @@ class RobotProgrammingParser():
             self.tango.setServo(0, 5000)
         else:
             self.tango.setServo(0, 7000)
-        time.sleep(data[1])
+        time.sleep(float(data[1]))
         self.tango.reset(0)
 
     def completeHeadTilt(self, direction):
