@@ -55,9 +55,9 @@ class RobotProgrammingParser():
     def completeDrive(self, data): # data: 0=direction, 1=speed, 2=time
         #self.display.printText("Driving " + data[0] + " at speed " + data[1] + " for " + data[2] + "seconds.", 50)
         if(data[0] == "Forward"):
-            self.tango.setServo(0, 6000 - (int(data[1])+5)*200)
+            self.tango.setServo(0, 6000 - (int(data[1])+2)*200)
         else:
-            self.tango.setServo(0, 6000 + (int(data[1])+5)*200)
+            self.tango.setServo(0, 6000 + (int(data[1])+2)*200)
         time.sleep(float(data[2]))
         self.tango.reset(0)
 
@@ -65,9 +65,9 @@ class RobotProgrammingParser():
         #self.display.printText("Driving " + data[0] + " for " + data[2] + "seconds.", 50)
         self.tango.setSpeed(1, 20)
         if(data[0] == "Right"):
-            self.tango.setServo(1, 4500)
+            self.tango.setServo(1, 5000)
         else:
-            self.tango.setServo(1, 7500)
+            self.tango.setServo(1, 7000)
         time.sleep(float(data[1]))
         self.tango.reset(1)
 
@@ -94,14 +94,14 @@ class RobotProgrammingParser():
 
     def completeListen(self):
         #self.display.printText("Listening...", 50)
+        print("\nListening...")
+        self.tts.speak("I'm Listening!")
         while True:
             with sr.Microphone() as source:
                 self.listen.adjust_for_ambient_noise(source)
                 self.listen.energy_threshold = 300
 
                 try:
-                    print("\nListening...")
-                    self.tts.speak("I'm Listening!")
                     audio = self.listen.listen(source)
                     text = self.listen.recognize_google(audio)
                     print("You said:", text)
