@@ -315,12 +315,12 @@ class RobotProgrammingGUI:
         
         self.actions.append(string)
         print(string)
-        
+
         popup_window.destroy()
 
     def open_keyboard(self, event):
         screen_width = self.canvas.winfo_screenwidth()
-        subprocess.Popen(['matchbox-keyboard', '-g', f"{screen_width}x100"])
+        subprocess.Popen(['matchbox-keyboard', f"{screen_width}x100"])
 
 
     def play_timeline(self):
