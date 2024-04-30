@@ -344,7 +344,7 @@ class RobotProgrammingGUI:
 
 def main():
     root = tk.Tk()
-    root.attributes('-fullscreen', True)
+    root.geometry(f"{root.winfor_screenwidth()}x{root.winfor_screenheight()}")
     canvas = tk.Canvas(root, bg="#dcdcdc")
     canvas.pack(fill=tk.BOTH, expand=True)
     RobotProgrammingGUI(root, canvas)
