@@ -16,7 +16,10 @@ class Screen:
         self.nextBlinkId = None
         self.clear()
 
-        self.drawEyes(0)
+        self.drawEyes(5)
+
+    def destroyWindow(self):
+        self.new_window.destroy()
     
     def clear(self):
         if self.movePupilsId is not None:

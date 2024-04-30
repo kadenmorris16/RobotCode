@@ -3,9 +3,12 @@ import subprocess
 from robotProgrammingParser import RobotProgrammingParser
 
 class RobotProgrammingGUI:
-    def __init__(self, root, canvas):
+    def __init__(self, root):
         self.root = root
-        self.canvas = canvas
+        self.root.geometry(f"{root.winfo_screenwidth()}x{root.winfo_screenheight()}")
+        self.canvas = tk.Canvas(root, bg="#dcdcdc")
+        self.canvas.pack(fill=tk.BOTH, expand=True)
+        
         self.actions = []
         
         # Create timeline slots
@@ -267,7 +270,7 @@ class RobotProgrammingGUI:
         apply_button.pack(pady=(font_size,font_size))
 
     def open_keyboard(self, event):
-        subprocess.Popen(['matchbox-keyboard', '--fontptsize', self.slot_size])
+        subprocess.Popen(['matchbox-keyboard'])
 
     def apply_adjustments(self, icon_name, popup_window):
         string = ""
@@ -322,7 +325,8 @@ class RobotProgrammingGUI:
         popup_window.destroy()
 
     def play_timeline(self):
-        RobotProgrammingParser(self.actions, self.root)
+        parser = RobotProgrammingParser(self.actions, self.root)
+        parser.run()
         print("Parsing Actions")
         self.restart()
 
@@ -344,10 +348,7 @@ class RobotProgrammingGUI:
 
 def main():
     root = tk.Tk()
-    root.geometry(f"{root.winfo_screenwidth()}x{root.winfo_screenheight()}")
-    canvas = tk.Canvas(root, bg="#dcdcdc")
-    canvas.pack(fill=tk.BOTH, expand=True)
-    RobotProgrammingGUI(root, canvas)
+    RobotProgrammingGUI(root)
     root.mainloop()
 
 if __name__ == "__main__":

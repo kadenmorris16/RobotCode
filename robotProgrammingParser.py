@@ -11,19 +11,18 @@ class RobotProgrammingParser():
     def __init__(self, actions, root):
         self.actions = actions
         self.tango = Tango()
+        self.gesture = Gesture(self.tango)
         self.listen = sr.Recognizer()
         self.tts = TTS()
-        self.gesture = Gesture(self.tango)
+
         self.display = Screen(root)
 
         self.gesture.start()
-        self.run()
 
     def run(self):
         action_num = 1
         for action_str in self.actions:
             
-            self.display.drawEyes(5)
             #self.display.printText("Action " + str(action_num) + "/" + str(len(self.actions)), 80)
             time.sleep(1)
 
@@ -47,7 +46,7 @@ class RobotProgrammingParser():
 
             action_num += 1
 
-        #self.display.clear()
+        self.display.destroyWindow()
 
     def completeDrive(self, data): # data: 0=direction, 1=speed, 2=time
         #self.display.printText("Driving " + data[0] + " at speed " + data[1] + " for " + data[2] + "seconds.", 50)
