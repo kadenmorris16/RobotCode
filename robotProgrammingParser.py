@@ -59,9 +59,9 @@ class RobotProgrammingParser():
     def completeTurn(self, data): # data: 0=direction, 1=time
         #self.display.printText("Driving " + data[0] + " for " + data[2] + "seconds.", 50)
         if(data[0] == "Right"):
-            self.tango.setServo(1, 4500)
+            self.tango.setServo(1, 5000)
         else:
-            self.tango.setServo(1, 7500)
+            self.tango.setServo(1, 7000)
         time.sleep(float(data[1]))
         self.tango.reset(1)
 

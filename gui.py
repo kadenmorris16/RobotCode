@@ -13,7 +13,9 @@ class RobotProgrammingGUI:
         self.root.geometry("%dx%d+%d+%d" % (width, height, x_coordinate, y_coordinate))
         root.attributes('-fullscreen', True)
 
-        self.canvas = tk.Canvas(root, bg="#dcdcdc")
+        self.frame = tk.Frame(self.root)
+        self.frame.pack(fill=tk.BOTH, expand=True)
+        self.canvas = tk.Canvas(self.frame, bg="#dcdcdc")
         self.canvas.pack(fill=tk.BOTH, expand=True)
         
         self.actions = []
@@ -171,7 +173,7 @@ class RobotProgrammingGUI:
             time_label = tk.Label(time_frame, text="Time (s):", font=("Arial", font_size))
             time_label.grid(row=0, column=0, padx=(10, 20))
 
-            popup_window.time_slider = tk.Scale(time_frame, from_=0.5, to=10, orient=tk.HORIZONTAL, length=popup_width/2, resolution=0.1, font=("Arial", font_size))
+            popup_window.time_slider = tk.Scale(time_frame, from_=1, to=10, orient=tk.HORIZONTAL, length=popup_width/2, resolution=0.1, font=("Arial", font_size))
             popup_window.time_slider.grid(row=0, column=1)
 
         elif icon_name == "Head Tilt":
