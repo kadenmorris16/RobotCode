@@ -7,13 +7,13 @@ from tango import Tango
 from screen import Screen
 
 class RobotProgrammingParser():
-    def __init__(self, actions):
+    def __init__(self, actions, root):
         self.actions = actions
         self.tango = Tango()
         self.listen = sr.Recognizer()
         self.tts = TTS()
-        self.gesture = Gesture()
-        self.display = Screen()
+        self.gesture = Gesture(self.tango)
+        self.display = Screen(root)
 
         self.display.drawEyes(5)
         self.gesture.start()
