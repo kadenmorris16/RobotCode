@@ -1,6 +1,6 @@
 import tkinter as tk
 import subprocess
-#from robotProgrammingParser import RobotProgrammingParser
+from robotProgrammingParser import RobotProgrammingParser
 
 class RobotProgrammingGUI:
     def __init__(self, root):
@@ -326,8 +326,8 @@ class RobotProgrammingGUI:
         popup_window.destroy()
 
     def play_timeline(self):
-        #parser = RobotProgrammingParser(self.actions, self.root)
-        #parser.run()
+        parser = RobotProgrammingParser(self.actions, self.root)
+        parser.run()
         print("Parsing Actions")
         self.restart()
 
