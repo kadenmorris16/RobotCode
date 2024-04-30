@@ -320,10 +320,8 @@ class RobotProgrammingGUI:
         popup_window.destroy()
 
     def open_keyboard(self, event):
-        # Open the system's default on-screen keyboard
         screen_width = self.canvas.winfo_screenwidth()
-        subprocess.Popen(['matchbox-keyboard'])
-        subprocess.Popen(['xdotool', 'search', '--sync', '--onlyvisible', '--class', 'matchbox-keyboard', 'windowsize', '--usehints', str(screen_width), '100'])
+        subprocess.Popen(['matchbox-keyboard', '-g', f"{screen_width}x100"])
 
 
     def play_timeline(self):
