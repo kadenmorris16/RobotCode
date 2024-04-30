@@ -1,11 +1,12 @@
 import tkinter as tk
 import subprocess
-from robotProgrammingParser import RobotProgrammingParser
+#from robotProgrammingParser import RobotProgrammingParser
 
 class RobotProgrammingGUI:
     def __init__(self, root):
         self.root = root
         self.root.geometry(f"{root.winfo_screenwidth()}x{root.winfo_screenheight()}")
+        self.root.attributes('-fullscreen', True)
         self.canvas = tk.Canvas(root, bg="#dcdcdc")
         self.canvas.pack(fill=tk.BOTH, expand=True)
         
@@ -325,8 +326,8 @@ class RobotProgrammingGUI:
         popup_window.destroy()
 
     def play_timeline(self):
-        parser = RobotProgrammingParser(self.actions, self.root)
-        parser.run()
+        #parser = RobotProgrammingParser(self.actions, self.root)
+        #parser.run()
         print("Parsing Actions")
         self.restart()
 

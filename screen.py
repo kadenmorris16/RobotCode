@@ -5,21 +5,21 @@ import threading
 class Screen:
     def __init__(self, root):
         self.root = root
-        self.root.geometry(f"{root.winfo_screenwidth()}x{root.winfo_screenheight()}")
-        self.new_window = tk.Toplevel(self.root)
-        self.canvas = tk.Canvas(self.new_window, bg="#dcdcdc")
+        self.root.attributes('-fullscreen', True)
+        self.frame = tk.Frame(self.root)
+        self.frame.pack(fill=tk.BOTH, expand=True)
+        self.canvas = tk.Canvas(self.frame, bg="#dcdcdc")
         self.canvas.pack(fill=tk.BOTH, expand=True)
         self.movePupilsId = None
         self.moveFigureId = None
         self.spiralId = None
         self.blinkId  = None
         self.nextBlinkId = None
-        self.clear()
 
         self.drawEyes(5)
 
     def destroyWindow(self):
-        self.new_window.destroy()
+        self.frame.destroy()
     
     def clear(self):
         if self.movePupilsId is not None:
@@ -179,9 +179,9 @@ def run():
         if event.char == '1':
             display.move()
         elif event.char == '2':
-            display.printText(speech, 20, True)
+            display.printText(speech, 20)
         elif event.char == '3':
-            display.printWordSpiral(word, 150, True)
+            display.printWordSpiral(word, 150)
         elif event.char == '4':
             display.drawEyes(0)
         elif event.char == '5':
@@ -194,6 +194,8 @@ def run():
             display.drawEyes(4)
         elif event.char == '9':
             display.drawEyes(5)
+        elif event.char == '0':
+            display.destroyWindow()
 
     root.bind('<KeyPress>', on_key_press)
 
