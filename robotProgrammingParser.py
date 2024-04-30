@@ -23,7 +23,7 @@ class RobotProgrammingParser():
         action_num = 1
         for action_str in self.actions:
             
-            self.display.printText("Action " + str(action_num) + "/" + str(len(self.actions)), 50)
+            #self.display.printText("Action " + str(action_num) + "/" + str(len(self.actions)), 80)
             time.sleep(1)
             self.display.drawEyes(5)
 
@@ -109,10 +109,10 @@ class RobotProgrammingParser():
 
     def completeGesture(self, gesture):
         if gesture == "pointRight":
-            self.gesture.pointRightDouble()
+            self.gesture.pointRightSingle()
             time.sleep(1)
         elif  gesture ==  "pointLeft":
-            self.gesture.pointLeftDouble()
+            self.gesture.pointLeftSingle()
             time.sleep(1)
         elif  gesture == "handsUp":
             self.gesture.armsUp()

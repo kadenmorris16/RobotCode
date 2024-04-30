@@ -347,7 +347,7 @@ def main():
     root.attributes('-fullscreen', True)
     canvas = tk.Canvas(root, bg="#dcdcdc")
     canvas.pack(fill=tk.BOTH, expand=True)
-    app = RobotProgrammingGUI(root, canvas)
+    RobotProgrammingGUI(root, canvas)
     root.mainloop()
 
 if __name__ == "__main__":
