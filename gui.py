@@ -320,8 +320,8 @@ class RobotProgrammingGUI:
 
     def open_keyboard(self, event):
         # Open the system's default on-screen keyboard
-        subprocess.Popen(['xdotool', 'search', '--onlyvisible', '--class', 'osk', 'windowactivate', '--sync', 'key', '--clearmodifiers', 'shift+F10'])
-
+        subprocess.Popen(['matchbox-keyboard'])
+        
     def play_timeline(self):
         #RobotProgrammingParser(self.actions)
         print("Parsing Actions")
