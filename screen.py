@@ -5,7 +5,7 @@ import threading
 class Screen:
     def __init__(self, root):
         self.root = root
-        self.root.geometry(f"{root.winfor_screenwidth()}x{root.winfor_screenheight()}")
+        self.root.geometry(f"{root.winfo_screenwidth()}x{root.winfo_screenheight()}")
         self.new_window = tk.Toplevel(self.root)
         self.canvas = tk.Canvas(self.new_window, bg="#dcdcdc")
         self.canvas.pack(fill=tk.BOTH, expand=True)
