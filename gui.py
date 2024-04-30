@@ -320,7 +320,7 @@ class RobotProgrammingGUI:
 
     def open_keyboard(self, event):
         # Open the system's default on-screen keyboard
-        subprocess.run(['osk'])
+        subprocess.Popen(['gkbd-keyboard-display'])
 
     def play_timeline(self):
         #RobotProgrammingParser(self.actions)
