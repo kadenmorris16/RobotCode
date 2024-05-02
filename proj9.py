@@ -141,7 +141,7 @@ def move(distances, anchor):
 
 # Returns an array of anchor distances
 def getSerialData():
-    ser = serial.Serial('COM5', 115200)
+    ser = serial.Serial('/dev/ttyUSB0', 115200)
     ser.close()
     ser.open()
     distances = []
@@ -156,14 +156,10 @@ def getSerialData():
                 if(data[1] != 'R'): #Range error check
                     split = data.split(',')
                     print(split)
-                    #print("Distance to Anchor 0: " + split[1]) #Distance measured in meters with two decimal places (ex: 2.39)
                     if(len(split) > 4):
                         distances = [float(split[1]), float(split[2]), float(split[3]), float(split[4])]
                         all_distances[got_data] = distances
                         got_data += 1
-                    # print("Distance to Anchor 1: " + split[2])
-                    # print("Distance to Anchor 2: " + split[3])
-                    # print("Distance to Anchor 3: " + split[4])
         except:
             print("Error found while decoding, skipping line...")
     final_dist = [0, 0, 0, 0]

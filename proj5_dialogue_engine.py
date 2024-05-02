@@ -1,5 +1,6 @@
 import random
 import speech_recognition as sr
+import pyttsx3
 
 filename = "dialogue_testing.txt"
 current_rule = None
@@ -330,7 +331,7 @@ def getResponse(word):
                         break
                 count += 1
     
-    return("Don't know that word")
+    return("Don't know that word") # REPLACE WITH AI BACKEND 
 
 def getVarValue(name):
     #print(str(vars))
@@ -353,9 +354,35 @@ def checkResponse(line):
         return ret
     else:
         return line
+
+def pickGreeting():
+    greetings = ["hello", "howdy", "hi there"]
+    return greetings[random.randint(0,2)]
+
+def final():
+    engine = pyttsx3.init()
+    readFile()
+    listening = True
+
+    greeting = pickGreeting()
+    print("Robot: " + greeting)
+    engine.say(greeting)
+    engine.runAndWait()
+
+    while listening:
+        print("Human: ")
+        word = input()
+        response = getResponse(word.strip())
+        response = checkResponse(response)
+        if("office" in response):
+            return 2
+        elif("restrooms" in response):
+            return 3
+        else:
+            print("Robot: " + response)
+            engine.say(response)
+            engine.runAndWait()
             
-
-
 
 def begin():
     global current_rule
@@ -372,16 +399,4 @@ def begin():
             response = checkResponse(response)
             
             print("Robot: " + response)
-            """ try:
-                print("listening")
-                audio = r.listen(source)            
-                print("Got audio")
-                word = r.recognize_google(audio)
-                print("Human: " + word)
-                response = getResponse(word)
-                print("Robot: " + response)
-            except sr.UnknownValueError:
-                print("Don't know that word") """
 
-readFile()
-begin()
