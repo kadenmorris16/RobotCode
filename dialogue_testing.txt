@@ -15,3 +15,6 @@ u:(my name is _): hello $name
 u:(what is my name) : your name is $name
 u: (how old am I) : you are $age
 u:(this is an error) error here
+u: (take me to hunters office):Taking you to hunters office
+u: (take me to the restrooms):Taking you to the restrooms
+
