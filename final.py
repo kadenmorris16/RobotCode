@@ -10,8 +10,8 @@ from threading import Thread
 from gestures import Gesture
 
 engine = pyttsx3.init()
-root = tk.Tk()
-display = Screen(root)
+#root = tk.Tk()
+#display = Screen(root)
 tango = Tango()
 gesture = Gesture(tango)
 gesture.start()
