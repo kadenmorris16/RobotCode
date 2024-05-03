@@ -48,9 +48,10 @@ def main():
     # Robot announces that it needs to charge the battery, then moves to the charging quadrant (A1) and announces "Charging activated"
     if(goto == 2):
         p9.turn(2, 'l')
-        p9.moveForward(2)
+        p9.moveForward(3)
     else:
-        p9.turn(3, 'r')
+        p9.turn(3, 'l')
+        p9.moveForward(4)
     
     engine.say("charging activated")
     engine.runAndWait()
