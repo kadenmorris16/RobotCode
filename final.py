@@ -1,4 +1,5 @@
 import pyttsx3
+from tango import Tango
 import tkinter as tk
 import time
 import proj5_dialogue_engine as p5
@@ -11,7 +12,8 @@ engine = pyttsx3.init()
 root = tk.Tk()
 display = Screen(root)
 display.root.mainloop()
-gesture = Gesture()
+tango = Tango()
+gesture = Gesture(tango)
 gesture.start()
 THRESHOLD = 100
 
