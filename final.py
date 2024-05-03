@@ -1,11 +1,18 @@
 import pyttsx3
+import tkinter as tk
 import time
 import proj5_dialogue_engine as p5
 import proj9 as p9
 from screen import Screen
 
+from gestures import Gesture
+
 engine = pyttsx3.init()
-display = Screen()
+root = tk.Tk()
+display = Screen(root)
+display.root.mainloop()
+gesture = Gesture()
+gesture.start()
 THRESHOLD = 100
 
 def main():
