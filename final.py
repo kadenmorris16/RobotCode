@@ -62,14 +62,14 @@ def test(goto):
     time.sleep(1)
     p9.moveForward()
     p9.determineAngle(distances, p9.getSerialData(), goto)
-    p9.move(2)
+    p9.move(3)
     print("Arrived in quadrant " + str(goto))
     time.sleep(1)
 
     # Robot announces that it needs to charge the battery, then moves to the charging quadrant (A1) and announces "Charging activated"
     if(goto == 2):
         p9.turn(2, 'l')
-        p9.move(4)
+        p9.move(3)
     else:
         p9.turn(3, 'l')
         p9.move(4)
