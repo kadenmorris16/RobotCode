@@ -83,7 +83,6 @@ def determineAngle(d_before, d_after, target):
 
     if(closest == target): #Probably don't need to adjust
         print("FACING TARGET")
-        move(d_after, target)
     elif(closest == findOppositeAnchor(target)): #Should do a ~180 degree turn
         print("FACING OPPOSITE")
         turn(3, 'r')
