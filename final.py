@@ -2,8 +2,10 @@ import pyttsx3
 import time
 import proj5_dialogue_engine as p5
 import proj9 as p9
+from screen import Screen
 
 engine = pyttsx3.init()
+display = Screen()
 THRESHOLD = 100
 
 def main():
@@ -12,12 +14,14 @@ def main():
     
     goto = 0 # Will be replaced by the quadrant the human asks to go to 
     if(p9.getDistance() < THRESHOLD):
-        goto = p5.final()
+        goto = p5.final(display)
     else:
         while(p9.getDistance() > THRESHOLD):
             print("No person detected")
             time.sleep(1)
-        goto = p5.final()
+        goto = p5.final(display)
+
+    display.drawEyes(5)
     
     # Once the human asks to go to a quadrant, the robot takes them to the quadrant (try to be in the center)
     distances = p9.getSerialData()

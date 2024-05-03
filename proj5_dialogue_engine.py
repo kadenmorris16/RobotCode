@@ -1,6 +1,7 @@
 import random
 import speech_recognition as sr
 import pyttsx3
+from chatGPT import ChatGPT
 
 filename = "dialogue_testing.txt"
 current_rule = None
@@ -330,8 +331,11 @@ def getResponse(word):
                     if(r_split[count] != w_split[count]):
                         break
                 count += 1
+
+    ai = ChatGPT()
+    response = ai.question_random(word)
     
-    return("Don't know that word") # REPLACE WITH AI BACKEND 
+    return(response) # REPLACE WITH AI BACKEND 
 
 def getVarValue(name):
     #print(str(vars))
@@ -359,13 +363,14 @@ def pickGreeting():
     greetings = ["hello", "howdy", "hi there"]
     return greetings[random.randint(0,2)]
 
-def final():
+def final(display):
     engine = pyttsx3.init()
     readFile()
     listening = True
 
     greeting = pickGreeting()
     print("Robot: " + greeting)
+    display.printText(greeting, 30)
     engine.say(greeting)
     engine.runAndWait()
 
@@ -375,13 +380,18 @@ def final():
         response = getResponse(word.strip())
         response = checkResponse(response)
         if("office" in response):
+            engine.say("Okay! Follow me...")
+            engine.runAndWait()
             return 2
         elif("restrooms" in response):
+            engine.say("Okay! Follow me...")
+            engine.runAndWait()
             return 3
         else:
             print("Robot: " + response)
             engine.say(response)
             engine.runAndWait()
+            display.printText(word + "\n\n" + response, 20)
             
 
 def begin():
@@ -400,3 +410,6 @@ def begin():
             
             print("Robot: " + response)
 
+
+if __name__ == "__main__":
+    final()
