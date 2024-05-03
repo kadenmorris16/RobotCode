@@ -71,8 +71,8 @@ def test(goto):
         p9.turn(2, 'l')
         p9.move(3)
     else:
-        p9.turn(3, 'l')
-        p9.move(4)
+        p9.turn(2, 'l')
+        p9.move()
     
     print("charging activated")
     #engine.say("charging activated")
