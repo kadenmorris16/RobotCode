@@ -128,15 +128,10 @@ def moveForward():
 
 
 # Not very elegant but avoids doing trig, might need to rework after testing
-def move(distances, anchor):
-    last_distance = distances[anchor]
-    current_distance = last_distance
-
+def move(num_times):
     #In theory, should exit loop once the distance between the anchor and robot begins to increase again
-    for i in range(4):
+    for i in range(num_times):
         moveForward()
-        last_distance = current_distance
-        current_distance = getSerialData()[anchor]
         time.sleep(0.5)
 
 # Returns an array of anchor distances

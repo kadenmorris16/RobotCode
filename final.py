@@ -17,6 +17,11 @@ gesture = Gesture(tango)
 gesture.start()
 THRESHOLD = 100
 
+#AO will be the starting quadrant
+#A1 will be the charging station
+#A2 will be Hunter's Office
+#A3 will be the restrooms
+
 def main():
     # Robot starts in quadrant A0 facing a random direction
     # Robot waits until it senses someone, then says a greeting from the dialogue script
@@ -42,12 +47,37 @@ def main():
 
     # Robot announces that it needs to charge the battery, then moves to the charging quadrant (A1) and announces "Charging activated"
     if(goto == 2):
-        p9.turn(2, 'r')
+        p9.turn(2, 'l')
+        p9.moveForward(2)
     else:
         p9.turn(3, 'r')
-    p9.move(3)
+    
     engine.say("charging activated")
     engine.runAndWait()
 
-Thread(target=main).start()
-display.root.mainloop()
+def test(goto):
+    # Once the human asks to go to a quadrant, the robot takes them to the quadrant (try to be in the center)
+    distances = p9.getSerialData()
+    time.sleep(1)
+    p9.moveForward()
+    p9.determineAngle(distances, p9.getSerialData(), goto)
+    p9.move(2)
+    print("Arrived in quadrant " + str(goto))
+    time.sleep(1)
+
+    # Robot announces that it needs to charge the battery, then moves to the charging quadrant (A1) and announces "Charging activated"
+    if(goto == 2):
+        p9.turn(2, 'r')
+        p9.move(2)
+    else:
+        p9.turn(3, 'r')
+        p9.move(4)
+    
+    print("charging activated")
+    #engine.say("charging activated")
+    #engine.runAndWait()
+
+#Thread(target=main).start()
+#display.root.mainloop()
+
+test(2)
