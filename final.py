@@ -15,7 +15,6 @@ display = Screen(root)
 tango = Tango()
 gesture = Gesture(tango)
 gesture.start()
-display.root.mainloop()
 THRESHOLD = 100
 
 def main():
@@ -51,3 +50,4 @@ def main():
     engine.runAndWait()
 
 Thread(target=main).start()
+display.root.mainloop()
