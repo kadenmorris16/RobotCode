@@ -81,4 +81,4 @@ def test(goto):
 #Thread(target=main).start()
 #display.root.mainloop()
 
-test(2)
+test(3)
