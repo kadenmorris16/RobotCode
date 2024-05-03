@@ -5,16 +5,17 @@ import time
 import proj5_dialogue_engine as p5
 import proj9 as p9
 from screen import Screen
+from threading import Thread
 
 from gestures import Gesture
 
 engine = pyttsx3.init()
 root = tk.Tk()
 display = Screen(root)
-display.root.mainloop()
 tango = Tango()
 gesture = Gesture(tango)
 gesture.start()
+display.root.mainloop()
 THRESHOLD = 100
 
 def main():
@@ -49,4 +50,4 @@ def main():
     engine.say("charging activated")
     engine.runAndWait()
 
-main()
+Thread(target=main).start()
