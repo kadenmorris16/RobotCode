@@ -371,7 +371,7 @@ def final(display: Screen):
 
     greeting = pickGreeting()
     print("Robot: " + greeting)
-    display.printText(greeting, 30)
+    #display.printText(greeting, 30)
     engine.say(greeting)
     engine.runAndWait()
 
@@ -392,7 +392,7 @@ def final(display: Screen):
             print("Robot: " + response)
             engine.say(response)
             engine.runAndWait()
-            display.printText(word + "\n\n" + response, 20)
+            #display.printText(word + "\n\n" + response, 20)
             
 
 def begin():
