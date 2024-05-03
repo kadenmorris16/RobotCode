@@ -23,9 +23,6 @@ class Screen:
         self.nextBlinkId = None
 
         self.drawEyes(5)
-
-    def destroyWindow(self):
-        self.frame.destroy()
     
     def clear(self):
         if self.movePupilsId is not None:
@@ -44,9 +41,6 @@ class Screen:
             self.canvas.after_cancel(self.nextBlinkId)
             self.nextBlinkId = None
         self.canvas.delete("all")
-        for widget in self.root.winfo_children():
-            if isinstance(widget, tk.Label):
-                widget.destroy()
     
     def drawEyes(self, look):
         self.clear()
@@ -200,8 +194,6 @@ def run():
             display.drawEyes(4)
         elif event.char == '9':
             display.drawEyes(5)
-        elif event.char == '0':
-            display.destroyWindow()
 
     root.bind('<KeyPress>', on_key_press)
 
