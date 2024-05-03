@@ -10,8 +10,8 @@ from threading import Thread
 from gestures import Gesture
 
 engine = pyttsx3.init()
-#root = tk.Tk()
-#display = Screen(root)
+root = tk.Tk()
+display = Screen(root)
 tango = Tango()
 gesture = Gesture(tango)
 gesture.start()
@@ -42,28 +42,7 @@ def main():
     time.sleep(1)
     p9.moveForward()
     p9.determineAngle(distances, p9.getSerialData(), goto)
-    p9.move(2)
-    time.sleep(1)
-
-    # Robot announces that it needs to charge the battery, then moves to the charging quadrant (A1) and announces "Charging activated"
-    if(goto == 2):
-        p9.turn(2, 'l')
-        p9.moveForward(4)
-    else:
-        p9.turn(3, 'l')
-        p9.moveForward(4)
-    
-    engine.say("charging activated")
-    engine.runAndWait()
-
-def test(goto):
-    # Once the human asks to go to a quadrant, the robot takes them to the quadrant (try to be in the center)
-    distances = p9.getSerialData()
-    time.sleep(1)
-    p9.moveForward()
-    p9.determineAngle(distances, p9.getSerialData(), goto)
     p9.move(4)
-    print("Arrived in quadrant " + str(goto))
     time.sleep(1)
 
     # Robot announces that it needs to charge the battery, then moves to the charging quadrant (A1) and announces "Charging activated"
@@ -75,10 +54,10 @@ def test(goto):
         p9.move(4)
     
     print("charging activated")
-    #engine.say("charging activated")
-    #engine.runAndWait()
+    engine.say("charging activated")
+    engine.runAndWait()
 
-#Thread(target=main).start()
-#display.root.mainloop()
+Thread(target=main).start()
+display.root.mainloop()
 
-test(3)
+main()
