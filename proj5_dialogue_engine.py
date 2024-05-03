@@ -2,6 +2,7 @@ import random
 import speech_recognition as sr
 import pyttsx3
 from chatGPT import ChatGPT
+from screen import Screen
 
 filename = "dialogue_testing.txt"
 current_rule = None
@@ -363,7 +364,7 @@ def pickGreeting():
     greetings = ["hello", "howdy", "hi there"]
     return greetings[random.randint(0,2)]
 
-def final(display):
+def final(display: Screen):
     engine = pyttsx3.init()
     readFile()
     listening = True
