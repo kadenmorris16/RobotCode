@@ -62,7 +62,7 @@ def test(goto):
     time.sleep(1)
     p9.moveForward()
     p9.determineAngle(distances, p9.getSerialData(), goto)
-    p9.move(3)
+    p9.move(4)
     print("Arrived in quadrant " + str(goto))
     time.sleep(1)
 
