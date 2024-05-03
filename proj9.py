@@ -35,7 +35,7 @@ def getDistance():
         if(time.time() - timeout) > 3:
             print("Timeout occurred while receiving echo signal")
             return None
-    print("New Reading:")
+    #print("New Reading:")
     pulse_end = time.time()
     pulse_duration = pulse_end - pulse_start
 
