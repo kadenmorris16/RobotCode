@@ -62,7 +62,7 @@ def test(goto):
     time.sleep(1)
     p9.moveForward()
     p9.determineAngle(distances, p9.getSerialData(), goto)
-    p9.move(4)
+    p9.move(3)
     print("Arrived in quadrant " + str(goto))
     time.sleep(1)
 
@@ -72,7 +72,7 @@ def test(goto):
         p9.move(3)
     else:
         p9.turn(2, 'l')
-        p9.move()
+        p9.move(4)
     
     print("charging activated")
     #engine.say("charging activated")
