@@ -45,6 +45,10 @@ def main():
     p9.move(4)
     time.sleep(1)
 
+    print("Going to charging station")
+    engine.say("Going to charging station")
+    engine.runAndWait()
+
     # Robot announces that it needs to charge the battery, then moves to the charging quadrant (A1) and announces "Charging activated"
     if(goto == 2):
         p9.turn(2, 'l')
